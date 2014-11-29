@@ -50,6 +50,11 @@ angular.module('inklusik.routes', ['simpleLogin'])
       url:'/popular',
       templateUrl: "templates/popular.html",
       controller: 'PopularCtrl'
+    },
+    'report': {
+      url:'/report',
+      templateUrl: "templates/report.html",
+      controller: 'ReportCtrl'
     }
   })
   

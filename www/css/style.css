@@ -820,3 +820,18 @@ td-card img {
     right: 0px;
     padding: 3px 12px;
 }
+
+.absolute-left{
+	position:absolute;
+	background-color: rgba(0,0,0,0);
+	color:#fff;
+	border-width: 0px
+}
+
+.absolute-right{
+	position:absolute;
+	right:0px;
+	background-color: rgba(0,0,0,0);
+	color:#fff;
+	border-width: 0px
+}

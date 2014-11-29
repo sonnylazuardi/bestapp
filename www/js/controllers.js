@@ -37,6 +37,10 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   }
 })
 
+.controller('ReportCtrl', function($scope,Toilet){
+  
+})
+
 .controller('SearchCtrl', function($scope, $rootScope, $location, Toilet, Geolocation) {
   Geolocation.init($scope);
   $scope.search = function(){
