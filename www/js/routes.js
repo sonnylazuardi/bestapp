@@ -30,6 +30,11 @@ angular.module('inklusik.routes', ['simpleLogin'])
       url:'/toilet',
       templateUrl: "templates/toilet.html",
       controller: 'ToiletCtrl'
+    },
+    'toilet.add': {
+      url:'/toilet/add',
+      templateUrl: "templates/toilet-add.html",
+      controller: 'ToiletAddCtrl'
     }
   })
   

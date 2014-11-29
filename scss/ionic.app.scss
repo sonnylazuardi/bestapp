@@ -18,20 +18,10 @@ $dark:                            #444 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
-$base-background-color: #F3EDE3 !default;
-$login-bg-color: #57ba47 !default;
-$stable: $login-bg-color !default;
-$button-stable-text: #fff !default;
+// $base-background-color: #F3EDE3 !default;
+// $login-bg-color: #57ba47 !default;
+// $stable: $login-bg-color !default;
+// $button-stable-text: #fff !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
-
-body {
-  width: 100%;
-  height: 100%;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-}
-
-body {
-	background: $base-background-color;
-}

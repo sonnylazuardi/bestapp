@@ -10,6 +10,38 @@
       </div>
       <h2>Toilet Imba</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim ipsum cumque vitae ab, non minus eaque veniam inventore dolor distinctio, et similique?</p>
+      <div class="toilet-clean-level">
+        <div class="range range-positive">
+          <i class="icon ion-ios7-trash"></i>
+          <input type="range" name="volume">
+          <i class="icon ion-ios7-trash-outline"></i>
+        </div>
+      </div>
+      <div class="toilet-button row">
+        <div class="col">
+          <button class="button button-block button-balanced" type="submit" ng-click="like()"><i class="ion-thumbsup"></i> 2</button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-assertive" type="submit" ng-click="dislike()"><i class="ion-thumbsdown"></i> 3</button>
+        </div>
+      </div>
+      <div class="toilet-button row">
+        <div class="col">
+          <button class="button button-block button-light" type="submit" ng-click="male()">
+            <i class="fa fa-icon fa-male fa-lg"></i>
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-light" type="submit" ng-click="male()">
+            <i class="fa fa-icon fa-female fa-lg"></i>
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-light" type="submit" ng-click="male()">
+            <i class="fa fa-icon fa-wheelchair fa-lg"></i>
+          </button>
+        </div>
+      </div>
     </div>
   
     <div class="card">
@@ -41,8 +73,15 @@
         </div>
       </div>
     </div>
-
     
+    <div class="list">
+      <label class="item item-input">
+        <textarea placeholder="Comments"></textarea>
+      </label>
+      <button class="button button-block button-stable" type="submit" ng-click="comment()"><i class="ion-chatbox-working"></i> Comment</button>
+    <div>
+
+
 
 
   </ion-content>

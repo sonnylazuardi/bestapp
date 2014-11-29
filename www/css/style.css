@@ -577,6 +577,17 @@ td-card img {
     min-height: 80px;
 }
 
+.toilet-status {
+    text-align: center;
+    padding-bottom: 20px;
+    font-size: 20px;
+    font-family: roboto-thin;
+}
+
+.toilet-status span {
+    padding: 0 10px;
+}
+
 .title-banner h2{
     font-family: roboto-thin;
     text-align: center;
@@ -588,7 +599,8 @@ td-card img {
 	background: url('../img/side_bg.jpg') no-repeat;
 	background-size: cover;
 	background-position: center center;
-	min-height: 250px;
+	min-height: 180px;
+    color: #fff;
 }
 .profile-banner h2{
 	font-family: roboto-thin;
@@ -601,7 +613,6 @@ td-card img {
     font-family: roboto;
     color: #fff;
     padding: 0 20px;
-    padding-bottom: 20px;
 }
 
 .profile-tab {
@@ -668,6 +679,11 @@ td-card img {
 
 #small-map .angular-google-map-container{
   height: 150px;
+}
+
+#small-map2 .angular-google-map-container{
+  height: 150px;
+  margin-top: -10px;
 }
 
 
@@ -743,4 +759,11 @@ td-card img {
 
 .card {
 	margin:10px !important;
+}
+
+.toilet-button .button.button-block {
+    font-size: 20px;
+    font-family: roboto;
+    font-weight: bolder;
+    margin: 0;
 }

@@ -1,4 +1,4 @@
-angular.module('inklusik.services', ['ngCordova'])
+angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-maps'])
 
 .factory('User', function() {
   var self = this;
@@ -11,6 +11,51 @@ angular.module('inklusik.services', ['ngCordova'])
 .factory('Playlist', function() {
   var self = this;
   self.songList = [];
+  return self;
+})
+
+.factory('Geolocation', function($cordovaGeolocation) {
+  var self = this;
+  self.init = function($scope) {
+    $cordovaGeolocation
+      .getCurrentPosition()
+      .then(function (position) {
+        var lat  = position.coords.latitude;
+        var long = position.coords.longitude;
+        $scope.map = {center: {latitude: lat, longitude: long }, zoom: 14 };
+        $scope.marker.coords.latitude = lat;
+        $scope.marker.coords.longitude = long;
+      }, function(err) {
+        // error
+        alert('Error fetching position');
+      });
+
+    $scope.options = {scrollwheel: false};
+    $scope.marker = {
+      id: 0,
+      coords: {
+        latitude: 40.1451,
+        longitude: -99.6680
+      },
+      options: { draggable: true },
+      events: {
+        dragend: function (marker, eventName, args) {
+          $log.log('marker dragend');
+          var lat = marker.getPosition().lat();
+          var lon = marker.getPosition().lng();
+          $log.log(lat);
+          $log.log(lon);
+
+          $scope.marker.options = {
+            draggable: true,
+            labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+            labelAnchor: "100 0",
+            labelClass: "marker-labels"
+          };
+        }
+      }
+    };
+  }
   return self;
 })
 
@@ -93,82 +138,6 @@ angular.module('inklusik.services', ['ngCordova'])
       }
       def.resolve(dataLengkap);
       //def.resolve(data.data);
-    });
-    return def.promise;
-  }
-  return self;
-})
-
-.factory('Lyric', function($http, serverUrl, $q) {
-  var self = this;
-  self.get = function(artist, title) {
-    var def = $q.defer();
-    console.log(serverUrl+'lyric/'+artist+'/'+title);
-    $http.get(serverUrl+'lyric/'+artist+'/'+title).success(function(data) {
-      var parser = $.parseHTML(data);
-      // var text = parser.find('pre');
-      // console.log($(parser[7]).text());
-      if (parser) {
-        var text = $(parser[7]).html();
-        text = text.replace(/\n/g, "<br>");
-        def.resolve(text);
-      } else {
-        def.resolve('');
-      }
-    });
-    return def.promise;
-  }
-  return self;
-})
-
-.factory('Trend', function($http, serverUrl, $q){
-  var self = this;
-  self.getToday = function(){
-    var def = $q.defer();
-    $http.get(serverUrl+'music/popular/today?limit=8').success(function(data){
-      var song = data.data;
-      for (var i=0;i<song.length;i++){
-        if (song[i].CoverArtFilename != null && song[i].CoverArtFilename != "")
-          song[i].CoverArtFilename = 'http://images.gs-cdn.net/static/albums/' + song[i].CoverArtFilename;
-        else 
-          song[i].CoverArtFilename = 'img/album.jpg';
-      }
-      def.resolve(song);
-    });
-    return def.promise;
-  }
-  self.getThisMonth = function(){
-    var def = $q.defer();
-    $http.get(serverUrl+'music/popular/month?limit=8').success(function(data){
-      var song = data.data;
-      for (var i=0;i<song.length;i++){
-        if (song[i].CoverArtFilename != null && song[i].CoverArtFilename != "")
-          song[i].CoverArtFilename = 'http://images.gs-cdn.net/static/albums/' + song[i].CoverArtFilename;
-        else 
-          song[i].CoverArtFilename = 'img/album.jpg';
-      }
-      def.resolve(song);
-    });
-    return def.promise;
-  }
-  return self;
-})
-
-.factory('Search', function($http, serverUrl, $q){
-  var self = this;
-  self.search = function(query){
-    var def = $q.defer();
-    console.log(serverUrl+'music/search/song?query='+query);
-    $http.get(serverUrl+'music/search/song?query='+query).success(function(data){
-      console.log(data);
-      var song = data.data;
-      for (var i=0;i<song.length;i++){
-        if (song[i].CoverArtFilename != null && song[i].CoverArtFilename != "")
-          song[i].CoverArtFilename = 'http://images.gs-cdn.net/static/albums/' + song[i].CoverArtFilename;
-        else 
-          song[i].CoverArtFilename = 'img/album.jpg';
-      }
-      def.resolve(song);
     });
     return def.promise;
   }
