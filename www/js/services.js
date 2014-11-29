@@ -25,19 +25,15 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
         var long = position.coords.longitude;
         $scope.marker.coords.latitude = lat;
         $scope.marker.coords.longitude = long;
-        // $scope.map.center.latitude = lat;
-        // $scope.map.center.longitude = long;
-        $scope.map = {center: {latitude: lat, longitude: long }, zoom: 14, bounds: {} };
-        // Only need to regenerate once
+        $scope.map = {center: {latitude: lat, longitude: long }, zoom: 20, bounds: {} };
 
         $scope.$watch(function() {
           return $scope.map.bounds;
         }, function(nv, ov) {
-          // Only need to regenerate once
           if (!ov.southwest && nv.southwest) {
             var markers = [];
             for (var i = 0; i < 5; i++) {
-              markers.push(createRandomMarker(i, $scope.map.bounds))
+              markers.push(createRandomMarker(i+1, $scope.map.bounds))
             }
             $scope.randomMarkers = markers;
           }
@@ -49,9 +45,7 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
     $scope.windowOptions = {
       visible: true
     };
-
-
-    
+    $scope.toilets = [];
 
     var createRandomMarker = function(i, bounds, idKey) {
       var lat_min = bounds.southwest.latitude,
@@ -66,21 +60,17 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
       var latitude = lat_min + (Math.random() * lat_range);
       var longitude = lng_min + (Math.random() * lng_range);
       var ret = {
-        id: i,
         latitude: latitude,
         longitude: longitude,
-        options: { draggable: true },
-        events: {
-          dragend: function (marker, eventName, args) {
-            console.log('marker dragend');
-            var lat = marker.getPosition().lat();
-            var lon = marker.getPosition().lng();
-            console.log(lat);
-            console.log(lon);
-          }
-        }
+        title: $scope.toilets[i].name,
+        description: $scope.toilets[i].description,
+        icon: 'http://sonnylazuardi.github.io/bestapp/www/img/marker.png',
+        show: false
       };
-      // ret[idKey] = i;
+      ret.onClick = function() {
+        ret.show = !ret.show;
+      };
+      ret[idKey] = i;
       return ret;
     };
 
@@ -110,7 +100,7 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
 
 .factory('Song', function($http, serverUrl, $q, User) {
   var self = this;
-  self.getById = function(song_id) {
+  self.all = function() {
     var def = $q.defer();
     console.log(serverUrl+'music/'+song_id+'/details');
     $http.get(serverUrl+'music/'+song_id+'/details').success(function(data) {
@@ -123,70 +113,6 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
           def.resolve(song);
         });
       }
-    });
-    return def.promise;
-  }
-  self.like = function(song_id) {
-    // like/{type}/{user_id}/{song_id}
-    $http.get(serverUrl+'like/'+User.type+'/'+User.user_id+'/'+song_id);
-    $http.get(serverUrl+'music/'+song_id+'/details').success(function(data) {
-      if (data.data) {
-        var song = data.data;
-        if (song)
-          song.CoverArtFilename = 'http://images.gs-cdn.net/static/albums/' + song.CoverArtFilename;
-        $http.get(serverUrl+'music/'+song_id+'/stream').success(function(data2) {
-          song.filename = data2.data.url;
-        });
-        $http.post(serverUrl+ 'migme_post' + '/' + User.migme_id + '?body=likes ' + song.ArtistName + ' - ' + song.SongName + '&privacy=0&reply_permission=0&originality=1');
-      }
-    });
-    
-    
-  }
-  self.unlike = function(song_id) {
-    // like/{type}/{user_id}/{song_id}
-    $http.get(serverUrl+'unlike/'+User.type+'/'+User.user_id+'/'+song_id);
-  }
-  self.dislike = function(song_id) {
-    $http.get(serverUrl+'dislike/'+User.type+'/'+User.user_id+'/'+song_id); 
-  }
-  self.undislike = function(song_id) {
-    $http.get(serverUrl+'undislike/'+User.type+'/'+User.user_id+'/'+song_id); 
-  }
-  self.likeStatus = function(song_id) {
-    var def = $q.defer();
-    $http.get(serverUrl+'like/status/'+User.type+'/'+User.user_id+'/'+song_id).success(function(data) {
-      def.resolve(data.data);
-    });
-    return def.promise;
-  }
-  self.discover = function() {
-    var def = $q.defer();
-    $http.get(serverUrl+'music/discover').success(function(data) {
-      if (data.data) {
-        def.resolve(data.data);
-      }
-    });
-    return def.promise;
-  }
-  self.getLikedSong = function(){
-    var def = $q.defer();
-    $http.get(serverUrl+'like/my/'+User.type+'/'+User.user_id).success(function(data) {
-      var list = data.data;
-      var dataLengkap = [];
-      for (var i=0;i<list.length;i++){
-        $http.get(serverUrl+'music/'+list[i].song_id+'/details').success(function(data){
-          var song = data.data;
-          console.log(data);
-          if (song.CoverArtFilename != null && song.CoverArtFilename != "")
-            song.CoverArtFilename = 'http://images.gs-cdn.net/static/albums/' + song.CoverArtFilename;
-          else 
-            song.CoverArtFilename = 'img/album.jpg';
-          dataLengkap.push(data.data);
-        });
-      }
-      def.resolve(dataLengkap);
-      //def.resolve(data.data);
     });
     return def.promise;
   }
