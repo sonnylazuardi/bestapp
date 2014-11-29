@@ -1,0 +1,57 @@
+<ion-view title="ADD TOILET">
+  <ion-content class="map-content" >
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" id="small-map">
+      <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+      </ui-gmap-marker>
+    </ui-gmap-google-map>
+    <div class="profile-banner">
+      <br>
+      <div style="background: url('img/logo.png'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 85px; width: 85px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+      </div>
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" ng-model="name">
+        </label>
+        <label class="item item-input">
+          <textarea id="" rows="4" ng-model="description"></textarea>
+        </label>
+      </div>
+      <div class="toilet-clean-level">
+        <div class="range range-positive">
+          <i class="icon ion-sad"></i>
+          <input type="range" name="volume">
+          <i class="icon ion-happy"></i>
+        </div>
+      </div>
+      <div class="toilet-button row">
+        <div class="col">
+          <button class="button button-block button-balanced" type="submit" ng-click="like()"><i class="ion-thumbsup"></i> 0</button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-assertive" type="submit" ng-click="dislike()"><i class="ion-thumbsdown"></i> 0</button>
+        </div>
+      </div>
+      <div class="toilet-button row">
+        <div class="col">
+          <button class="button button-block button-light" type="submit" ng-click="male()">
+            <i class="fa fa-icon fa-male fa-lg"></i>
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-light" type="submit" ng-click="male()">
+            <i class="fa fa-icon fa-female fa-lg"></i>
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-light" type="submit" ng-click="male()">
+            <i class="fa fa-icon fa-wheelchair fa-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <button class="button button-block button-stable" type="submit" ng-click="save()"><i class="ion-chatbox-working"></i> Save</button>
+
+
+  </ion-content>
+</ion-view>

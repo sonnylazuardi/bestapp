@@ -38,20 +38,14 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
         longitude: -99.6680
       },
       options: { draggable: true },
+      icon: '../img/logo.png',
       events: {
         dragend: function (marker, eventName, args) {
-          $log.log('marker dragend');
+          console.log('marker dragend');
           var lat = marker.getPosition().lat();
           var lon = marker.getPosition().lng();
-          $log.log(lat);
-          $log.log(lon);
-
-          $scope.marker.options = {
-            draggable: true,
-            labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
-            labelAnchor: "100 0",
-            labelClass: "marker-labels"
-          };
+          console.log(lat);
+          console.log(lon);
         }
       }
     };
@@ -59,10 +53,51 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
   return self;
 })
 
+.factory('Comment', function($http, serverUrl, $q){
+  var self = this;
+  self.getByToiletId = function(toilet_id){
+    var def = $q.defer();
+    $http.get(serverUrl+'api/toilet/' + toilet_id +'/comments').success(function(data) {
+      if (data.data) {
+        var comments = data.data;
+        def.resolve(comments);
+      }
+    });
+    return def.promise;
+  }
+  self.postNewComment = function(toilet_id,cmnt){
+    var def = $q.defer();
+    var msg = {
+      toilet_id :  toilet_id,
+      title : "Alif Raditya",
+      content : cmnt,
+      user_id : 1, //sample
+      email : "alifradityar@gmail.com", // sample
+      date : Date.now()
+    };
+    $http.post(serverUrl+'api/' + msg.user_id + '/toilet/' + toilet_id + '/comments',msg).success(function(data) {
+      if (data.data) {
+        var comments = data.data;
+        def.resolve(comments);
+      }
+    });
+    return def.promise
+  }
+
+  return self;
+})
+
 .factory('Toilet', function($http, serverUrl, $q, $cordovaGeolocation){
   var self = this;
   self.getById = function(toilet_id){
-    return null;
+    var def = $q.defer();
+    $http.get(serverUrl+'api/toilet/' + toilet_id).success(function(data) {
+      if (data.data) {
+        var toilets = data.data;
+        def.resolve(toilets);
+      }
+    });
+    return def.promise;
   }
   self.getNearest = function(){
     var def = $q.defer();
@@ -96,7 +131,7 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
   }
   self.search = function(query){
     var def = $q.defer();
-    $http.get(serverUrl+'api/toilet/all' + query).success(function(data) {
+    $http.get(serverUrl+'api/toilet/search/' + query).success(function(data) {
       if (data.data) {
         var toilets = data.data;
         def.resolve(toilets);

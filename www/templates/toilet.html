@@ -1,50 +1,53 @@
-<ion-view title="MAP">
+<ion-view title="TOILET">
   <ion-content class="map-content" >
     <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" id="small-map">
       <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
       </ui-gmap-marker>
     </ui-gmap-google-map>
     <div class="profile-banner">
+      <button class="button pull-right" ng-click="statistic()">
+        <i class="ion-stats-bars"></i> Statistic
+      </button>
       <br>
       <div style="background: url('img/logo.png'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 85px; width: 85px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
       </div>
-      <h2>Toilet Imba</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim ipsum cumque vitae ab, non minus eaque veniam inventore dolor distinctio, et similique?</p>
+      <h2>{{toilet.name}}</h2>
+      <p>{{toilet.description}}</p>
       <div class="toilet-clean-level">
         <div class="range range-positive">
-          <i class="icon ion-ios7-trash"></i>
+          <i class="icon ion-sad"></i>
           <input type="range" name="volume">
-          <i class="icon ion-ios7-trash-outline"></i>
+          <i class="icon ion-happy"></i>
         </div>
       </div>
       <div class="toilet-button row">
         <div class="col">
-          <button class="button button-block button-balanced" type="submit" ng-click="like()"><i class="ion-thumbsup"></i> 2</button>
+          <button class="button button-block button-balanced" ng-click="like()"><i class="ion-thumbsup"></i> 2</button>
         </div>
         <div class="col">
-          <button class="button button-block button-assertive" type="submit" ng-click="dislike()"><i class="ion-thumbsdown"></i> 3</button>
+          <button class="button button-block button-assertive" ng-click="dislike()"><i class="ion-thumbsdown"></i> 3</button>
         </div>
       </div>
       <div class="toilet-button row">
         <div class="col">
-          <button class="button button-block button-light" type="submit" ng-click="male()">
+          <button class="button button-block button-light" ng-click="male()">
             <i class="fa fa-icon fa-male fa-lg"></i>
           </button>
         </div>
         <div class="col">
-          <button class="button button-block button-light" type="submit" ng-click="male()">
+          <button class="button button-block button-light" ng-click="female()">
             <i class="fa fa-icon fa-female fa-lg"></i>
           </button>
         </div>
         <div class="col">
-          <button class="button button-block button-light" type="submit" ng-click="male()">
+          <button class="button button-block button-light" ng-click="disable()">
             <i class="fa fa-icon fa-wheelchair fa-lg"></i>
           </button>
         </div>
       </div>
     </div>
   
-    <div class="card">
+    <div class="card" ng-repeat="comment in comments">
       <div class="item item-text-wrap">
         <div class="row">
           <div class="col col-20 toilet-thumb-container">
@@ -52,31 +55,16 @@
             </div>
           </div>
           <div class="col col-80 head-title">
-            <h4>Harits</h4>
-            <p>Keren nih mantaps toiletnya</p>
+            <h4>{{comment.title}}</h4>
+            <p>{{comment.content}}</p>
           </div>
         </div>
       </div>  
     </div>
-
-    <div class="card">
-      <div class="item item-text-wrap">
-        <div class="row">
-          <div class="col col-20 toilet-thumb-container">
-            <div class="chat-thumb">
-            </div>
-          </div>
-          <div class="col col-80 head-title">
-            <h4>Habibi</h4>
-            <p>Kece...</p>
-          </div>
-        </div>
-      </div>
-    </div>
     
     <div class="list">
       <label class="item item-input">
-        <textarea placeholder="Comments"></textarea>
+        <textarea placeholder="Comments" ng-model="form.newComment"></textarea>
       </label>
       <button class="button button-block button-stable" type="submit" ng-click="comment()"><i class="ion-chatbox-working"></i> Comment</button>
     <div>

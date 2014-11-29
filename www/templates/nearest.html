@@ -8,7 +8,7 @@
       </ui-gmap-marker>
     </ui-gmap-google-map>
     <div class="card" ng-repeat="toilet in toilets">
-        <div class="item item-text-wrap">
+        <div class="item item-text-wrap" ng-click="goToToilet(toilet.id)">
           <div class="row">
             <div class="col col-33 toilet-thumb-container">
               <div class="toilet-thumb">
