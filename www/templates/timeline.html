@@ -1,0 +1,47 @@
+<ion-view title="PROFILE">
+  <ion-content>
+    <div>
+      <div class="profile-banner">
+        <br>
+        <div style="background: url('img/harits.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 85px; width: 85px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+        </div>
+        <h4>Muhammad Harits SAHE</h4>
+      </div>
+      <div>
+        <div class="row post-tl">
+          <div class="col post-tl-left">
+            <div class="line-timeline">
+            </div>
+            <div style="background: url('img/harits.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 65px; width: 65px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+            </div>
+            <div class="like-post-btn" ng-click="toggleLike(0)">
+              <span class="number-like"> {{numberOfLike[0]}} <span> 
+              <i class="icon ion-ios7-heart-outline" ng-show="likeStatus[0] == 0"></i>
+              <i class="icon ion-ios7-heart" ng-show="likeStatus[0] != 0"></i>
+            </div>
+          </div>
+          <div class="col col-75 post-tl-right">
+            <div class="row">
+              <div class="col">
+                liked
+              </div>
+              <div class="col date">
+                18/11/2014
+              </div>
+            </div>
+            <div style="background-color:#E6E7E8;" class="row">
+              <div class="col">
+                <div style="background: url('img/linkinpark.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 55px; width: 55px; background-color: #fff; border-radius:5%; margin: 0px auto; ">
+                </div>
+              </div>
+              <div class="col col-75">
+                <p class="song-title">Castle of Glass</p>
+                <p class="song-artist">Linkin Park</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

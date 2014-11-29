@@ -588,9 +588,9 @@ td-card img {
 	background: url('../img/side_bg.jpg') no-repeat;
 	background-size: cover;
 	background-position: center center;
-	min-height: 250px;
+	min-height: 150px;
 }
-.profile-banner h2{
+.profile-banner h4{
 	font-family: roboto-thin;
 	text-align: center;
 	color: #fff;
@@ -613,7 +613,7 @@ td-card img {
 .post-tl-left {
 	font-size: 20px;
 	text-align: center;
-	color:#00A79D;
+	color:#95206A;
 }
 
 .post-tl-left .icon {
@@ -627,7 +627,7 @@ td-card img {
 
 .post-tl-right .date {
 	text-align: right;
-	color:#1B75BB;
+	color:#95206A;
 }
 
 .post-tl-right .song-title{
@@ -743,4 +743,30 @@ td-card img {
 
 .card {
 	margin:10px !important;
+}
+
+.item-input {
+	background-color: rgba(255, 255, 255, 0);
+
+}
+
+.item-input input {
+	color:#fff;
+}
+
+.line-timeline {
+	background: url('../img/line.jpg');
+	background-size: contain;
+	background-repeat:repeat-y;
+	background-position: center center;
+	width: 5px;
+	height: 60%;
+	background-color: #fff;
+	margin: 0px auto;
+	padding-top:15px;
+	position:fixed; left:46px;
+	z-index:-1;
+	margin-top:-20px;
+	border-bottom-left-radius:20px;
+	border-bottom-right-radius:20px;
 }

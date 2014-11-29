@@ -206,6 +206,10 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   });
 })
 
+.controller('TimelineCtrl', function($scope) {
+
+})
+
 .controller('ToiletCtrl', function($scope, $cordovaGeolocation) {
     $cordovaGeolocation
     .getCurrentPosition()
