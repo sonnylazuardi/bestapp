@@ -26,10 +26,15 @@ angular.module('inklusik.routes', ['simpleLogin'])
       templateUrl: "templates/register.html",
       controller: 'RegisterCtrl'
     },
-    'toilet.add': {
+    'toilet-add': {
       url:'/toilet/add',
       templateUrl: "templates/toilet-add.html",
       controller: 'ToiletAddCtrl'
+    },
+    'toilet-statistic': {
+      url:'/toilet/statistic',
+      templateUrl: "templates/toilet-statistic.html",
+      controller: 'ToiletStatisticCtrl'
     },
     'toilet': {
       url:'/toilet',
@@ -63,7 +68,7 @@ angular.module('inklusik.routes', ['simpleLogin'])
       }
     });
     // routes which are not in our map are redirected to /home
-    $urlRouterProvider.otherwise('/map');
+    $urlRouterProvider.otherwise('/nearest');
   })
 
   .run(function($rootScope, $location, simpleLogin, ROUTES, loginRedirectPath) {

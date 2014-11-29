@@ -38,20 +38,14 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
         longitude: -99.6680
       },
       options: { draggable: true },
+      icon: '../img/logo.png',
       events: {
         dragend: function (marker, eventName, args) {
-          $log.log('marker dragend');
+          console.log('marker dragend');
           var lat = marker.getPosition().lat();
           var lon = marker.getPosition().lng();
-          $log.log(lat);
-          $log.log(lon);
-
-          $scope.marker.options = {
-            draggable: true,
-            labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
-            labelAnchor: "100 0",
-            labelClass: "marker-labels"
-          };
+          console.log(lat);
+          console.log(lon);
         }
       }
     };

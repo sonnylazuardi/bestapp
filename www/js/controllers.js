@@ -1,4 +1,4 @@
-angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-maps'])
+angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-maps', 'highcharts-ng'])
 
 .controller('LoginCtrl', function($scope, $rootScope, simpleLogin) {
     $rootScope.loginShow = true;
@@ -66,16 +66,11 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   });
 })
 
-
-.controller('ToiletCtrl', function($scope, Geolocation) {
-  Geolocation.init($scope);
-})
-
 .controller('TimelineCtrl', function($scope) {
 
 })
 
-.controller('ToiletCtrl', function($scope, $cordovaGeolocation) {
+.controller('ToiletCtrl', function($scope, $cordovaGeolocation, $location) {
     $cordovaGeolocation
     .getCurrentPosition()
     .then(function (position) {
@@ -107,8 +102,65 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
       }
     }
   }
+
+  $scope.statistic = function() {
+    $location.path('/toilet/statistic');
+  }
+  $scope.like = function() {
+
+  }
+  $scope.dislike = function() {
+
+  }
+  $scope.male = function() {
+
+  }
+  $scope.female = function() {
+
+  }
 })
 
 .controller('ToiletAddCtrl', function($scope, Geolocation) {
   Geolocation.init($scope);
+  $scope.name = 'Toilet Name';
+  $scope.description = 'Toilet Description';
+})
+
+.controller('ToiletStatisticCtrl', function($scope) {
+  $scope.chartConfig = {
+    title: {
+      text: '',
+      x: -20 //center
+    },
+    subtitle: {
+        // text: 'Source: WorldClimate.com',
+        x: -20
+    },
+    xAxis: {
+        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        title: {
+            text: 'Ammonia Level (ppm)'
+        },
+        plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+        }]
+    },
+    tooltip: {
+        valueSuffix: 'ppm'
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
+    },
+    series: [{
+      name: 'Toilet Labtek V',
+      data: [7.0,  9.5,  18.2, 21.5, 25.2, 26.5, 23.3]
+    }]
+  };
 });

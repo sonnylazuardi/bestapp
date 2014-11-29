@@ -602,10 +602,25 @@ td-card img {
 	min-height: 150px;
     color: #fff;
 }
-.profile-banner h4{
+
+.holder-banner {
+    background: url('../img/side_bg.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 80px;
+    padding: 20px;
+    color: #fff;  
+    text-align: center; 
+}
+
+.profile-banner h2, .profile-banner h4, .holder-banner h2{
 	font-family: roboto-thin;
 	text-align: center;
 	color: #fff;
+}
+
+.profile-banner input, .profile-banner textarea {
+    color: #fff;
 }
 
 .profile-banner p{
@@ -770,11 +785,10 @@ td-card img {
 
 .item-input {
 	background-color: rgba(255, 255, 255, 0);
-
 }
 
-.item-input input {
-	color:#fff;
+.item-input textarea {
+    background-color: rgba(255, 255, 255, 0);   
 }
 
 .line-timeline {

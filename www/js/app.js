@@ -11,7 +11,8 @@ angular.module('inklusik', [
   'inklusik.directives',
   'inklusik.decorators',
   'inklusik.controllers',
-  'uiGmapgoogle-maps'
+  'uiGmapgoogle-maps',
+  'highcharts-ng'
 ])
 
 .run(function(simpleLogin, $ionicPlatform, $state) {
