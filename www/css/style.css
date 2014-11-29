@@ -157,18 +157,20 @@ html, body {
 	margin-top:1px;
 }
 
-.side-menu-options > a {
+.side-menu-options a {
 	background-color:#F4F8E7;
 	color:#808284;
 	border-width:0px;
-	padding-bottom: 3px;
-	padding-top:5px;
-	margin-left:10px;
+	padding-bottom: 8px;
+	padding-top:8px;
 	font-family: roboto;
+	font-size: 20px;
+	border-color: #682C90;
 }
 .side-menu-options > a > i {
 	color:#D1D2D4;
 	margin-right:5px;
+	width:40px;
 }
 
 .side-menu-footer {
@@ -792,4 +794,15 @@ td-card img {
 	margin-top:-20px;
 	border-bottom-left-radius:20px;
 	border-bottom-right-radius:20px;
+}
+
+.distance {
+    background-color: #63268A;
+    color: #fff;
+    text-align: right;
+    width: 80px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    padding: 3px 12px;
 }

@@ -1,0 +1,37 @@
+<ion-view title="LETTOI">
+  <ion-content>
+    <div class="title-banner">
+      <h2>Populer</h2>
+    </div>
+    <div class="card" ng-repeat="toilet in toilets">
+      <div class="item item-text-wrap">
+        <div class="row">
+          <div class="col col-33 toilet-thumb-container">
+            <div class="toilet-thumb">
+            </div>
+          </div>
+          <div class="col col-67 head-title">
+            <h4>{{toilet.name}}</h4>
+            <div class="feature">
+              <i class="fa fa-icon fa-male fa-lg"></i>
+              <i class="fa fa-icon fa-female fa-lg"></i>
+              <i class="fa fa-icon fa-wheelchair fa-lg"></i>
+            </div>
+            <div class="row like-stat">
+              <div class="col">
+                <i class="fa fa-icon fa-thumbs-o-up"></i>
+                {{toilet.like}}
+                &nbsp;&nbsp;
+                <i class="fa fa-icon fa-thumbs-o-down"></i>
+                {{toilet.dislike}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="distance">
+          250 M
+        </div>
+      </div>  
+    </div>
+  </ion-content>
+</ion-view>

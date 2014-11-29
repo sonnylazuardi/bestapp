@@ -40,6 +40,11 @@ angular.module('inklusik.routes', ['simpleLogin'])
       url:'/timeline',
       templateUrl: "templates/timeline.html",
       controller: 'TimelineCtrl'
+    },
+    'popular': {
+      url:'/popular',
+      templateUrl: "templates/popular.html",
+      controller: 'PopularCtrl'
     }
   })
   

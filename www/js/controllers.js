@@ -37,13 +37,22 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   }
 })
 
-.controller('SearchCtrl', function($scope, $rootScope, $location) {
-  
+.controller('SearchCtrl', function($scope, $rootScope, $location, Toilet, Geolocation) {
+  Geolocation.init($scope);
+  $scope.search = function(){
+    Toilet.search($scope.search.query).then(function(data){
+      $scope.data = data;
+    });
+  }
 })
 
-.controller('NearestCtrl', function($scope, Geolocation){
+.controller('NearestCtrl', function($scope, Geolocation, Toilet){
   Geolocation.init($scope);
+  Toilet.getNearest().then(function(data){
+    console.log(data);
+    $scope.toilets = data;
 
+  });
 })
 
 .controller('RegisterCtrl', function($scope){
@@ -107,6 +116,14 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
       }
     }
   }
+})
+
+.controller('PopularCtrl', function($scope, Geolocation, Toilet){
+  Geolocation.init($scope);
+  Toilet.getPopular().then(function(data){
+    console.log(data);
+    $scope.toilets = data;
+  });
 })
 
 .controller('ToiletAddCtrl', function($scope, Geolocation) {

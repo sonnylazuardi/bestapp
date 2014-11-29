@@ -59,6 +59,54 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
   return self;
 })
 
+.factory('Toilet', function($http, serverUrl, $q, $cordovaGeolocation){
+  var self = this;
+  self.getById = function(toilet_id){
+    return null;
+  }
+  self.getNearest = function(){
+    var def = $q.defer();
+    $http.get(serverUrl+'api/toilet/nearest').success(function(data) {
+      if (data.data) {
+        var toilets = data.data;
+        def.resolve(toilets);
+      }
+    });
+    return def.promise;
+  }
+  self.getPopular = function(){
+    var def = $q.defer();
+    $http.get(serverUrl+'api/toilet/popular').success(function(data) {
+      if (data.data) {
+        var toilets = data.data;
+        def.resolve(toilets);
+      }
+    });
+    return def.promise;
+  }
+  self.getAll = function(){
+    var def = $q.defer();
+    $http.get(serverUrl+'api/toilet/all').success(function(data) {
+      if (data.data) {
+        var toilets = data.data;
+        def.resolve(toilets);
+      }
+    });
+    return def.promise;
+  }
+  self.search = function(query){
+    var def = $q.defer();
+    $http.get(serverUrl+'api/toilet/all' + query).success(function(data) {
+      if (data.data) {
+        var toilets = data.data;
+        def.resolve(toilets);
+      }
+    });
+    return def.promise;
+  }
+  return self;
+})
+
 .factory('Song', function($http, serverUrl, $q, User) {
   var self = this;
   self.getById = function(song_id) {
