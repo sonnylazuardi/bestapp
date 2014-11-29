@@ -17,18 +17,74 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
 .factory('Geolocation', function($cordovaGeolocation) {
   var self = this;
   self.init = function($scope) {
+    
     $cordovaGeolocation
       .getCurrentPosition()
       .then(function (position) {
         var lat  = position.coords.latitude;
         var long = position.coords.longitude;
-        $scope.map = {center: {latitude: lat, longitude: long }, zoom: 14 };
         $scope.marker.coords.latitude = lat;
         $scope.marker.coords.longitude = long;
+        // $scope.map.center.latitude = lat;
+        // $scope.map.center.longitude = long;
+        $scope.map = {center: {latitude: lat, longitude: long }, zoom: 14, bounds: {} };
+        // Only need to regenerate once
+
+        $scope.$watch(function() {
+          return $scope.map.bounds;
+        }, function(nv, ov) {
+          // Only need to regenerate once
+          if (!ov.southwest && nv.southwest) {
+            var markers = [];
+            for (var i = 0; i < 5; i++) {
+              markers.push(createRandomMarker(i, $scope.map.bounds))
+            }
+            $scope.randomMarkers = markers;
+          }
+        }, true);
       }, function(err) {
         // error
         alert('Error fetching position');
       });
+    $scope.windowOptions = {
+      visible: true
+    };
+
+
+    
+
+    var createRandomMarker = function(i, bounds, idKey) {
+      var lat_min = bounds.southwest.latitude,
+        lat_range = bounds.northeast.latitude - lat_min,
+        lng_min = bounds.southwest.longitude,
+        lng_range = bounds.northeast.longitude - lng_min;
+
+      if (idKey == null) {
+        idKey = "id";
+      }
+
+      var latitude = lat_min + (Math.random() * lat_range);
+      var longitude = lng_min + (Math.random() * lng_range);
+      var ret = {
+        id: i,
+        latitude: latitude,
+        longitude: longitude,
+        options: { draggable: true },
+        events: {
+          dragend: function (marker, eventName, args) {
+            console.log('marker dragend');
+            var lat = marker.getPosition().lat();
+            var lon = marker.getPosition().lng();
+            console.log(lat);
+            console.log(lon);
+          }
+        }
+      };
+      // ret[idKey] = i;
+      return ret;
+    };
+
+    $scope.randomMarkers = [];
 
     $scope.options = {scrollwheel: false};
     $scope.marker = {
@@ -38,7 +94,6 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
         longitude: -99.6680
       },
       options: { draggable: true },
-      icon: '../img/logo.png',
       events: {
         dragend: function (marker, eventName, args) {
           console.log('marker dragend');
