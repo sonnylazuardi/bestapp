@@ -37,13 +37,34 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   }
 })
 
-.controller('SearchCtrl', function($scope, $rootScope, $location) {
+.controller('ReportCtrl', function($scope,Toilet){
   
 })
 
-.controller('NearestCtrl', function($scope, Geolocation){
+.controller('SearchCtrl', function($scope, $rootScope, $location, Toilet, Geolocation) {
   Geolocation.init($scope);
+  $scope.search = function(){
+    Toilet.search($scope.search.query).then(function(data){
+      console.log(data);
+      $scope.toilets = data;
+    });
+  }
+  $scope.goToToilet = function(toiletId){
+    $location.path('toilet/'+toiletId);
+  }
+})
 
+.controller('NearestCtrl', function($scope, Geolocation, Toilet, $location){
+  Geolocation.init($scope);
+  Toilet.getNearest().then(function(data){
+    console.log(data);
+    $scope.toilets = data;
+
+  });
+
+  $scope.goToToilet = function(toiletId){
+    $location.path('toilet/'+toiletId);
+  }
 })
 
 .controller('RegisterCtrl', function($scope){
@@ -70,7 +91,14 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
 
 })
 
-.controller('ToiletCtrl', function($scope, $cordovaGeolocation, $location) {
+.controller('ToiletCtrl', function($scope, $cordovaGeolocation, $location, $stateParams, Toilet, Comment) {
+    var id = $stateParams.id;
+    Toilet.getById(id).then(function(data){
+      $scope.toilet = data;
+    });
+    Comment.getByToiletId(id).then(function(data){
+      $scope.comments = data
+    });
     $cordovaGeolocation
     .getCurrentPosition()
     .then(function (position) {
@@ -117,6 +145,29 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   }
   $scope.female = function() {
 
+  }
+  $scope.form = {
+    newComment:""
+  };
+  $scope.comment = function(){
+      console.log($scope.form.newComment);
+      Comment.postNewComment(id,$scope.form.newComment).then(function(){
+        Comment.getByToiletId(id).then(function(data){
+          $scope.comments = data
+        });
+      });
+      $scope.form.newComment = "";
+  }
+})
+
+.controller('PopularCtrl', function($scope, Geolocation, Toilet, $location){
+  Geolocation.init($scope);
+  Toilet.getPopular().then(function(data){
+    console.log(data);
+    $scope.toilets = data;
+  });
+  $scope.goToToilet = function(toiletId){
+    $location.path('toilet/'+toiletId);
   }
 })
 

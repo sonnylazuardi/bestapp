@@ -98,6 +98,95 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
   return self;
 })
 
+.factory('Comment', function($http, serverUrl, $q){
+  var self = this;
+  self.getByToiletId = function(toilet_id){
+    var def = $q.defer();
+    $http.get(serverUrl+'api/toilet/' + toilet_id +'/comments').success(function(data) {
+      if (data.data) {
+        var comments = data.data;
+        def.resolve(comments);
+      }
+    });
+    return def.promise;
+  }
+  self.postNewComment = function(toilet_id,cmnt){
+    var def = $q.defer();
+    var msg = {
+      toilet_id :  toilet_id,
+      title : "Alif Raditya",
+      content : cmnt,
+      user_id : 1, //sample
+      email : "alifradityar@gmail.com", // sample
+      date : Date.now()
+    };
+    $http.post(serverUrl+'api/' + msg.user_id + '/toilet/' + toilet_id + '/comments',msg).success(function(data) {
+      if (data.data) {
+        var comments = data.data;
+        def.resolve(comments);
+      }
+    });
+    return def.promise
+  }
+
+  return self;
+})
+
+.factory('Toilet', function($http, serverUrl, $q, $cordovaGeolocation){
+  var self = this;
+  self.getById = function(toilet_id){
+    var def = $q.defer();
+    $http.get(serverUrl+'api/toilet/' + toilet_id).success(function(data) {
+      if (data.data) {
+        var toilets = data.data;
+        def.resolve(toilets);
+      }
+    });
+    return def.promise;
+  }
+  self.getNearest = function(){
+    var def = $q.defer();
+    $http.get(serverUrl+'api/toilet/nearest').success(function(data) {
+      if (data.data) {
+        var toilets = data.data;
+        def.resolve(toilets);
+      }
+    });
+    return def.promise;
+  }
+  self.getPopular = function(){
+    var def = $q.defer();
+    $http.get(serverUrl+'api/toilet/popular').success(function(data) {
+      if (data.data) {
+        var toilets = data.data;
+        def.resolve(toilets);
+      }
+    });
+    return def.promise;
+  }
+  self.getAll = function(){
+    var def = $q.defer();
+    $http.get(serverUrl+'api/toilet/all').success(function(data) {
+      if (data.data) {
+        var toilets = data.data;
+        def.resolve(toilets);
+      }
+    });
+    return def.promise;
+  }
+  self.search = function(query){
+    var def = $q.defer();
+    $http.get(serverUrl+'api/toilet/search/' + query).success(function(data) {
+      if (data.data) {
+        var toilets = data.data;
+        def.resolve(toilets);
+      }
+    });
+    return def.promise;
+  }
+  return self;
+})
+
 .factory('Song', function($http, serverUrl, $q, User) {
   var self = this;
   self.all = function() {

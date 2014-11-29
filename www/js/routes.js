@@ -37,7 +37,7 @@ angular.module('inklusik.routes', ['simpleLogin'])
       controller: 'ToiletStatisticCtrl'
     },
     'toilet': {
-      url:'/toilet',
+      url:'/toilet/:id',
       templateUrl: "templates/toilet.html",
       controller: 'ToiletCtrl'
     },
@@ -45,6 +45,16 @@ angular.module('inklusik.routes', ['simpleLogin'])
       url:'/timeline',
       templateUrl: "templates/timeline.html",
       controller: 'TimelineCtrl'
+    },
+    'popular': {
+      url:'/popular',
+      templateUrl: "templates/popular.html",
+      controller: 'PopularCtrl'
+    },
+    'report': {
+      url:'/report',
+      templateUrl: "templates/report.html",
+      controller: 'ReportCtrl'
     }
   })
   
