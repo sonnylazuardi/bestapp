@@ -104,6 +104,10 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
         var lon = marker.getPosition().lng();
         $log.log(lat);
         $log.log(lon);
+      }
+    }
+  }
+})
 
 .controller('ToiletAddCtrl', function($scope, Geolocation) {
   Geolocation.init($scope);

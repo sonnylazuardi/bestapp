@@ -26,15 +26,15 @@ angular.module('inklusik.routes', ['simpleLogin'])
       templateUrl: "templates/register.html",
       controller: 'RegisterCtrl'
     },
-    'toilet': {
-      url:'/toilet',
-      templateUrl: "templates/toilet.html",
-      controller: 'ToiletCtrl'
-    },
     'toilet.add': {
       url:'/toilet/add',
       templateUrl: "templates/toilet-add.html",
       controller: 'ToiletAddCtrl'
+    },
+    'toilet': {
+      url:'/toilet',
+      templateUrl: "templates/toilet.html",
+      controller: 'ToiletCtrl'
     },
     'timeline': {
       url:'/timeline',
