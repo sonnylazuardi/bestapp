@@ -38,7 +38,6 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
         longitude: -99.6680
       },
       options: { draggable: true },
-      icon: '../img/logo.png',
       events: {
         dragend: function (marker, eventName, args) {
           console.log('marker dragend');
