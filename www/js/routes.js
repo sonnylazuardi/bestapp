@@ -50,6 +50,16 @@ angular.module('inklusik.routes', ['simpleLogin'])
       url:'/statistic',
       templateUrl: "templates/statistic.html",
       controller: 'StatCtrl'
+    },
+    'nearest': {
+      url:'/nearest',
+      templateUrl: "templates/nearest.html",
+      controller: 'NearestCtrl'
+    },
+    'register': {
+      url:'/register',
+      templateUrl: "templates/register.html",
+      controller: 'RegisterCtrl'
     }
   })
   

@@ -96,7 +96,7 @@ html, body {
 }
 
 .login-page .logo {
-	background: url('../img/logo-white.png') no-repeat;
+	background: url('../img/logo-white.png') center center no-repeat;
     background-size: contain;
 	width: 100px;
 	height: 100px;
@@ -109,6 +109,7 @@ html, body {
 	text-align: center;
 	margin: 20px 0;
 	font-size:20px;
+	
 }
 
 .menu {
@@ -248,7 +249,7 @@ button.selected {
 }
 
 .pane {
-	background-color:#fff;
+	background-color:#FCFCFC;
 }
 
 .logo-bar {
@@ -588,29 +589,6 @@ td-card img {
 	font-family: roboto-lt;
 	padding:0px !important;
 }
-
-.person-item h4{
-	text-align: center;
-	font-family: roboto;
-	font-size:13px;
-}
-
-.music-item h4{
-	text-align: center;
-	font-family: roboto;
-	font-size:13px;
-	margin-top:0px;
-	margin-bottom:10px;
-}
-
-.music-item h3{
-	text-align: center;
-	font-family: roboto-lt;
-	font-size:16px;
-	margin-top:5px;
-	margin-bottom:0px;
-}
-
 .post-tl-left {
 	font-size: 20px;
 	text-align: center;
@@ -681,4 +659,41 @@ td-card img {
     text-align: center;
     text-overflow: ellipsis;
     font-size: 15px;
+}
+
+.toilet-thumb {
+	background: url('../img/toilet-img.jpg') no-repeat;
+	background-size: cover;
+	background-position: center center;
+	height: 100px;
+}
+
+.head-title h4{
+	margin:5px;
+	font-family: roboto;
+	font-size: 18px;
+}
+
+.head-title .feature{
+	margin-left:5px;
+}
+
+.head-title .like-stat{
+	margin-top:10px;
+}
+
+.card .item {
+	padding:0px;
+}
+
+.card .toilet-thumb-container{
+	padding:0px;
+}
+
+.card .row {
+	padding:0px;
+}
+
+.card {
+	margin:10px !important;
 }

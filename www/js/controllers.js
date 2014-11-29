@@ -145,6 +145,14 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   }
 })
 
+.controller('NearestCtrl', function($scope){
+
+})
+
+.controller('RegisterCtrl', function($scope){
+
+})
+
 .controller('MapCtrl', function($scope, uiGmapGoogleMapApi, $cordovaGeolocation, $ionicLoading, $timeout) {
   
   $cordovaGeolocation
