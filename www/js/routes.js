@@ -11,6 +11,11 @@ angular.module('inklusik.routes', ['simpleLogin'])
       templateUrl: "templates/home.html",
       controller: 'HomeCtrl'
     },
+    'map': {
+      url: "/map",
+      templateUrl: "templates/map.html",
+      controller: 'MapCtrl'
+    },
     'play': {
       url: "/play/:song_id",
       controller: 'PlayCtrl',
@@ -68,7 +73,7 @@ angular.module('inklusik.routes', ['simpleLogin'])
       }
     });
     // routes which are not in our map are redirected to /home
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/map');
   })
 
   .run(function($rootScope, $location, simpleLogin, ROUTES, loginRedirectPath) {

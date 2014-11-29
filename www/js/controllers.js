@@ -1,4 +1,4 @@
-angular.module('inklusik.controllers', ['ionic.contrib.ui.tinderCards', 'ui.knob', 'ngCordova'])
+angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-maps'])
 
 .controller('LoginCtrl', function($scope, $rootScope, simpleLogin) {
     $rootScope.loginShow = true;
@@ -19,145 +19,6 @@ angular.module('inklusik.controllers', ['ionic.contrib.ui.tinderCards', 'ui.knob
     	$rootScope.auth = false;
     }
 })
-
-.controller('PlayCtrl', function($scope, $rootScope, TDCardDelegate, Player, Playlist, Song, Lyric, $location, $stateParams) {
-    $rootScope.loginShow = false;
-    $rootScope.playShow = true;
-
-    $scope.nextSong = function() {
-        Playlist.songList = _.rest(Playlist.songList);
-        if (_.first(Playlist.songList) == undefined) {
-            $location.path('home');
-            Player.getPlayer().stop();
-        } else {
-            $location.path('play/'+_.first(Playlist.songList));
-        }
-    }
-
-    $scope.songInfo = {
-        song_id: $stateParams.song_id, 
-        nextSong: $scope.nextSong
-    }
-    $scope.audioPlaying = null;
-    $scope.lyric = '';
-    $scope.likeStatus = {love:0, hate:0};
-    $scope.toggleLike = function() {
-        $scope.likeStatus.love = +!$scope.likeStatus.love;
-        if ($scope.likeStatus.love) {
-            Song.like($scope.songInfo.song_id);
-        } else {
-            Song.unlike($scope.songInfo.song_id);
-        }
-    };
-
-    $scope.toggleDislike = function() {
-        $scope.likeStatus.hate = +!$scope.likeStatus.hate;
-        if ($scope.likeStatus.hate) {
-            Song.dislike($scope.songInfo.song_id);
-        } else {
-            Song.undislike($scope.songInfo.song_id);
-        }
-    };
-
-    $scope.mediaTimer = null;
-
-    Song.getById($scope.songInfo.song_id).then(function(data) {
-        $scope.song = data;
-        Player.play($scope.song.filename);
-
-        Player.getPlayer().then(function(my_player) {
-          $scope.audioPlaying = my_player;
-          console.log('audio : ');
-          console.log($scope.audioPlaying);
-          if (my_player.is_app) {
-            $scope.mediaTimer = setInterval(function () {
-              my_player.getCurrentPosition(
-                function (position) {
-                  if (position > -1) {
-                    $scope.progressBar = parseInt(position / my_player.getDuration() * 100);
-                    $scope.$apply();
-                  }
-                }
-              );
-            }, 800);
-          } else {
-            $scope.audioPlaying.ontimeupdate = function() {
-              $scope.progressBar = parseInt($scope.audioPlaying.currentTime / $scope.audioPlaying.duration * 100);
-              $scope.$apply();
-            }
-
-            $scope.audioPlaying.onended = function() {
-              console.log('beres');
-              $scope.nextSong();
-            }
-          }
-
-          $scope.isPlaying = true;
-        });
-
-
-        Lyric.get(data.ArtistName, data.SongName).then(function(data2) {
-            console.log(data2);
-            $scope.lyric = data2;
-        });
-        Song.likeStatus($scope.songInfo.song_id).then(function(data3) {
-            $scope.likeStatus = data3;
-        });
-    });
-    
-    var cardTypes = [
-        { title: 0 },
-    ];
-
-    $scope.cards = Array.prototype.slice.call(cardTypes, 0);
-
-    $scope.cardDestroyed = function(index) {
-        // $scope.cards.splice(index, 1);
-        $scope.nextSong();
-    };
-
-    $scope.addCard = function() {
-        var newCard = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-        newCard.id = Math.random();
-        $scope.cards.push(angular.extend({}, newCard));
-    }
-
-    $scope.progressBar = 0;
-    $scope.isPlaying = false;
-    $scope.control = function() {
-        $scope.isPlaying = !$scope.isPlaying;
-        if ($scope.isPlaying) {
-            $scope.audioPlaying.play();
-        } else {
-            $scope.audioPlaying.pause();
-        }
-    }
-    console.log($scope.audioPlaying);
-
-    $scope.changeProgress = function(val) {
-      console.log(val);
-      if ($scope.audioPlaying.duration) {
-        $scope.audioPlaying.currentTime = ((parseInt(val)/100) * $scope.audioPlaying.duration);
-      }
-    }
-})
-
-.controller('CardCtrl', function($scope, TDCardDelegate, Song) {
-  $scope.cardSwipedLeft = function(index) {
-    console.log('LEFT SWIPE');
-    Song.dislike($scope.songInfo.song_id);
-    $scope.songInfo.nextSong();
-    // $scope.addCard();
-  };
-  $scope.cardSwipedRight = function(index) {
-    console.log('RIGHT SWIPE');
-    Song.like($scope.songInfo.song_id);
-    $scope.songInfo.nextSong();
-    // $scope.addCard();
-  };
-})
-
-
 
 .controller('HomeCtrl', function($scope, $rootScope, simpleLogin, Song, Playlist, $location) {
   if (!$rootScope.auth)
@@ -282,4 +143,57 @@ angular.module('inklusik.controllers', ['ionic.contrib.ui.tinderCards', 'ui.knob
   $scope.showStatsFunc = function(val){
   	$scope.showStats = val;
   }
+})
+
+.controller('MapCtrl', function($scope, uiGmapGoogleMapApi, $cordovaGeolocation, $ionicLoading, $timeout) {
+  
+  $cordovaGeolocation
+    .getCurrentPosition()
+    .then(function (position) {
+      var lat  = position.coords.latitude;
+      var long = position.coords.longitude;
+      $scope.map = {center: {latitude: lat, longitude: long }, zoom: 14 };
+      $scope.marker.coords.latitude = lat;
+      $scope.marker.coords.longitude = long;
+    }, function(err) {
+      // error
+      alert('Error fetching position');
+    });
+
+  $ionicLoading.show({
+    template: '<div class="loading"></div>'
+  });
+
+  $scope.options = {scrollwheel: false};
+  $scope.marker = {
+      id: 0,
+      coords: {
+        latitude: 40.1451,
+        longitude: -99.6680
+      },
+      options: { draggable: true },
+      events: {
+        dragend: function (marker, eventName, args) {
+          $log.log('marker dragend');
+          var lat = marker.getPosition().lat();
+          var lon = marker.getPosition().lng();
+          $log.log(lat);
+          $log.log(lon);
+
+          $scope.marker.options = {
+            draggable: true,
+            labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+            labelAnchor: "100 0",
+            labelClass: "marker-labels"
+          };
+        }
+      }
+    };
+
+  uiGmapGoogleMapApi.then(function(maps) {
+    $timeout(function() {
+      console.log('loaded');
+      $ionicLoading.hide();  
+    }, 2000);
+  });
 });

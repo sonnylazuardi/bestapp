@@ -10,7 +10,8 @@ angular.module('inklusik', [
   'inklusik.services',
   'inklusik.directives',
   'inklusik.decorators',
-  'inklusik.controllers'
+  'inklusik.controllers',
+  'uiGmapgoogle-maps'
 ])
 
 .run(function(simpleLogin, $ionicPlatform, $state) {
@@ -28,19 +29,12 @@ angular.module('inklusik', [
       }
     }, 100);
   });
-});
+})
 
-/*
-The only required option is the "success" callback. Usage:
- 
-var shake = new Shake({
-  frequency: 300,                                                //milliseconds between polls for accelerometer data.
-  waitBetweenShakes: 1000,                                       //milliseconds to wait before watching for more shake events.
-  threshold: 12,                                                 //how hard the shake has to be to register.
-  success: function(magnitude, accelerationDelta, timestamp) {}, //callback when shake is detected. "this" will be the "shake" object.
-  failure: function() {},                                        //callback when watching/getting acceleration fails. "this" will be the "shake" object.
+.config(function(uiGmapGoogleMapApiProvider) {
+  uiGmapGoogleMapApiProvider.configure({
+    //    key: 'your api key',
+    v: '3.17',
+    libraries: 'weather,geometry,visualization'
+  });
 });
-shake.startWatch();
-shake.stopWatch();
-*/
- 

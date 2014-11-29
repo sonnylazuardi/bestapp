@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.inklusik.inklusik" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Inklusik</name>
+<widget id="com.lettoi.lettoi" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Lettoi</name>
   <description>
-    Kolaborasi Musik Tradisional Indonesia
+    Find the best public toilet
   </description>
   <author email="sonnylazuardi@gmail.com" href="http://sonnylab.com/">
-    Inkusik Developer Team
+    
   </author>
   <content src="index.html"/>
   <access origin="*" />
