@@ -66,9 +66,44 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   });
 })
 
+
 .controller('ToiletCtrl', function($scope, Geolocation) {
   Geolocation.init($scope);
 })
+
+.controller('TimelineCtrl', function($scope) {
+
+})
+
+.controller('ToiletCtrl', function($scope, $cordovaGeolocation) {
+    $cordovaGeolocation
+    .getCurrentPosition()
+    .then(function (position) {
+      var lat  = position.coords.latitude;
+      var long = position.coords.longitude;
+      $scope.map = {center: {latitude: lat, longitude: long }, zoom: 14 };
+      $scope.marker.coords.latitude = lat;
+      $scope.marker.coords.longitude = long;
+    }, function(err) {
+      // error
+      alert('Error fetching position');
+    });
+
+  $scope.options = {scrollwheel: false};
+  $scope.marker = {
+    id: 0,
+    coords: {
+      latitude: 40.1451,
+      longitude: -99.6680
+    },
+    options: { draggable: true },
+    events: {
+      dragend: function (marker, eventName, args) {
+        $log.log('marker dragend');
+        var lat = marker.getPosition().lat();
+        var lon = marker.getPosition().lng();
+        $log.log(lat);
+        $log.log(lon);
 
 .controller('ToiletAddCtrl', function($scope, Geolocation) {
   Geolocation.init($scope);
