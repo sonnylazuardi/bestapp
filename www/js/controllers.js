@@ -56,6 +56,7 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
 
 .controller('NearestCtrl', function($scope, Geolocation, Toilet, $location){
   Geolocation.init($scope);
+  
   Toilet.getNearest().then(function(data){
     console.log(data);
     $scope.toilets = data;

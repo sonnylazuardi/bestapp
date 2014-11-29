@@ -14,7 +14,7 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
   return self;
 })
 
-.factory('Geolocation', function($cordovaGeolocation) {
+.factory('Geolocation', function($cordovaGeolocation, Toilet) {
   var self = this;
   self.init = function($scope) {
     
@@ -46,6 +46,10 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
       visible: true
     };
     $scope.toilets = [];
+    Toilet.getAll().then(function(data) {
+      console.log(data);
+      $scope.toilets = data;
+    })
 
     var createRandomMarker = function(i, bounds, idKey) {
       var lat_min = bounds.southwest.latitude,
@@ -62,6 +66,7 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
       var ret = {
         latitude: latitude,
         longitude: longitude,
+        toiletId: $scope.toilets[i].id,
         title: $scope.toilets[i].name,
         description: $scope.toilets[i].description,
         icon: 'http://sonnylazuardi.github.io/bestapp/www/img/marker.png',
