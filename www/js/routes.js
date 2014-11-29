@@ -6,50 +6,15 @@ angular.module('inklusik.routes', ['simpleLogin'])
       controller: 'LoginCtrl',
       animation: 'slide-in-up'
     },
-    'home': {
-      url: "/home",
-      templateUrl: "templates/home.html",
-      controller: 'HomeCtrl'
-    },
     'map': {
       url: "/map",
       templateUrl: "templates/map.html",
       controller: 'MapCtrl'
     },
-    'play': {
-      url: "/play/:song_id",
-      controller: 'PlayCtrl',
-      templateUrl: "templates/play.html"
-    },
-    'timeline': {
-      url:'/timeline',
-      templateUrl: "templates/timeline.html",
-      controller: 'TimelineCtrl'
-    },
-    'friends': {
-      url:'/friends',
-      templateUrl: "templates/friends.html",
-      controller: 'FriendsCtrl'
-    },
     'search': {
       url:'/search',
       templateUrl: "templates/search.html",
       controller: 'SearchCtrl'
-    },
-    'playlist': {
-      url:'/playlist',
-      templateUrl: "templates/playlist.html",
-      controller: 'PlaylistCtrl'
-    },
-    'trending': {
-      url:'/trending',
-      templateUrl: "templates/trending.html",
-      controller: 'TrendingCtrl'
-    },
-    'statistic': {
-      url:'/statistic',
-      templateUrl: "templates/statistic.html",
-      controller: 'StatCtrl'
     },
     'nearest': {
       url:'/nearest',
@@ -60,6 +25,11 @@ angular.module('inklusik.routes', ['simpleLogin'])
       url:'/register',
       templateUrl: "templates/register.html",
       controller: 'RegisterCtrl'
+    },
+    'toilet': {
+      url:'/toilet',
+      templateUrl: "templates/toilet.html",
+      controller: 'ToiletCtrl'
     }
   })
   

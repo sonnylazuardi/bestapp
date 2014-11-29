@@ -570,17 +570,38 @@ td-card img {
     padding-top: 20px;
 }
 
+.title-banner {
+    background: url('../img/side_bg.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 80px;
+}
+
+.title-banner h2{
+    font-family: roboto-thin;
+    text-align: center;
+    color: #fff;
+    padding-top: 20px;
+}
+
 .profile-banner {
-	background: url('../img/banner_bg.jpg') no-repeat;
+	background: url('../img/side_bg.jpg') no-repeat;
 	background-size: cover;
 	background-position: center center;
-	height: 150px;
+	min-height: 250px;
 }
-.profile-banner> h4{
+.profile-banner h2{
 	font-family: roboto-thin;
 	text-align: center;
 	color: #fff;
-	font-size:18px;
+}
+
+.profile-banner p{
+    text-align: center;
+    font-family: roboto;
+    color: #fff;
+    padding: 0 20px;
+    padding-bottom: 20px;
 }
 
 .profile-tab {
@@ -641,9 +662,14 @@ td-card img {
 	font-family: roboto;
 }
 
-.angular-google-map-container {
+#full-map .angular-google-map-container{
   height: 100vh;
 }
+
+#small-map .angular-google-map-container{
+  height: 150px;
+}
+
 
 .loading {
     background: url('../img/loading.gif') no-repeat center center;
@@ -663,19 +689,39 @@ td-card img {
 
 .toilet-thumb {
 	background: url('../img/toilet-img.jpg') no-repeat;
-	background-size: cover;
-	background-position: center center;
-	height: 100px;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.chat-thumb {
+    background: url('../img/toilet-img.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin-top: 10px;
 }
 
 .head-title h4{
 	margin:5px;
+    margin-left: 0;
+    margin-bottom: 0;
 	font-family: roboto;
 	font-size: 18px;
 }
 
 .head-title .feature{
 	margin-left:5px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    color: #B861A6;
 }
 
 .head-title .like-stat{
@@ -688,6 +734,7 @@ td-card img {
 
 .card .toilet-thumb-container{
 	padding:0px;
+    text-align: center;
 }
 
 .card .row {

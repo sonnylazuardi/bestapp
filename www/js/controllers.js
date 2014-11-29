@@ -168,35 +168,35 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
       alert('Error fetching position');
     });
 
+  $scope.options = {scrollwheel: false};
+  $scope.marker = {
+    id: 0,
+    coords: {
+      latitude: 40.1451,
+      longitude: -99.6680
+    },
+    options: { draggable: true },
+    events: {
+      dragend: function (marker, eventName, args) {
+        $log.log('marker dragend');
+        var lat = marker.getPosition().lat();
+        var lon = marker.getPosition().lng();
+        $log.log(lat);
+        $log.log(lon);
+
+        $scope.marker.options = {
+          draggable: true,
+          labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+          labelAnchor: "100 0",
+          labelClass: "marker-labels"
+        };
+      }
+    }
+  };
+
   $ionicLoading.show({
     template: '<div class="loading"></div>'
   });
-
-  $scope.options = {scrollwheel: false};
-  $scope.marker = {
-      id: 0,
-      coords: {
-        latitude: 40.1451,
-        longitude: -99.6680
-      },
-      options: { draggable: true },
-      events: {
-        dragend: function (marker, eventName, args) {
-          $log.log('marker dragend');
-          var lat = marker.getPosition().lat();
-          var lon = marker.getPosition().lng();
-          $log.log(lat);
-          $log.log(lon);
-
-          $scope.marker.options = {
-            draggable: true,
-            labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
-            labelAnchor: "100 0",
-            labelClass: "marker-labels"
-          };
-        }
-      }
-    };
 
   uiGmapGoogleMapApi.then(function(maps) {
     $timeout(function() {
@@ -204,4 +204,45 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
       $ionicLoading.hide();  
     }, 2000);
   });
+})
+
+.controller('ToiletCtrl', function($scope, $cordovaGeolocation) {
+    $cordovaGeolocation
+    .getCurrentPosition()
+    .then(function (position) {
+      var lat  = position.coords.latitude;
+      var long = position.coords.longitude;
+      $scope.map = {center: {latitude: lat, longitude: long }, zoom: 14 };
+      $scope.marker.coords.latitude = lat;
+      $scope.marker.coords.longitude = long;
+    }, function(err) {
+      // error
+      alert('Error fetching position');
+    });
+
+  $scope.options = {scrollwheel: false};
+  $scope.marker = {
+    id: 0,
+    coords: {
+      latitude: 40.1451,
+      longitude: -99.6680
+    },
+    options: { draggable: true },
+    events: {
+      dragend: function (marker, eventName, args) {
+        $log.log('marker dragend');
+        var lat = marker.getPosition().lat();
+        var lon = marker.getPosition().lng();
+        $log.log(lat);
+        $log.log(lon);
+
+        $scope.marker.options = {
+          draggable: true,
+          labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+          labelAnchor: "100 0",
+          labelClass: "marker-labels"
+        };
+      }
+    }
+  };
 });

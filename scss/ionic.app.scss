@@ -26,25 +26,10 @@ $button-stable-text: #fff !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-@font-face {
-  font-family: 'MontserratFont';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Montserrat-Regular'), url('../fonts/montserrat.woff2') format('woff2'), url('../fonts/montserrat.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'MontserratFont';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Montserrat-Bold'), url('../fonts/montserrat2.woff2') format('woff2'), url('../fonts/montserrat2.woff') format('woff');
-}
-
 body {
-    width: 100%;
-    height: 100%;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-	font-family: 'MontserratFont';
+  width: 100%;
+  height: 100%;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 body {
