@@ -1,0 +1,660 @@
+/* Empty. Add your own CSS if you like */
+
+/* font */
+@font-face {
+    font-family: roboto-lt;
+    src: url(../fonts/Roboto-Light.ttf);
+}
+@font-face {
+    font-family: roboto-black;
+    src: url(../fonts/Roboto-Black.ttf);
+}
+@font-face {
+    font-family: roboto;
+    src: url(../fonts/Roboto-Regular.ttf);
+}
+@font-face {
+    font-family: roboto-thin;
+    src: url(../fonts/Roboto-Thin.ttf);
+}
+
+.bar.bar-stable {
+	border-width: 0px;
+	background-color: #fff ;
+	color:#00A79D;
+}
+
+.full-overlay {
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    position: fixed;
+    color: #27ae60;
+    background: url('../img/play_bg.jpg') no-repeat;
+    background-size: 100% 100%;
+}
+
+.scroll-refresher {
+	top: -70px;
+}
+
+.list.card.show .item-body img {
+	width: 100%;
+}
+
+.loading {
+	background: url('../img/loading.gif') no-repeat center center;
+	width: 100%;
+	height: 100%;
+}
+
+.loading-container .loading {
+	padding: 0px;
+	border-radius: 0px;
+	background-color: rgba(255,255,255,.6);
+	color: #000;
+	text-align: center;
+	text-overflow: ellipsis;
+	font-size: 15px;
+}
+
+.bar-stable .button.left-nav-icon {
+	margin-left:-15px;
+	padding-left:0px;
+	margin-right:0px;
+	padding-right:2px;
+}
+
+.login-page {
+	
+	width: 100%;
+	height: 100% !important;
+}
+
+.login-page .button {
+	border-width:0px;
+}
+
+.login-page .fb {
+	background-color: #2C6BB4;
+	font-family: roboto;
+}
+
+.login-page .migme {
+	background-color: #DBD622;
+	font-family: roboto;
+}
+
+.login-page {
+    padding: 100px 20px;
+}
+
+.login-page .logo {
+	background: url('../img/logo-white.png') no-repeat;
+    background-size: contain;
+	width: 100px;
+	height: 100px;
+	margin: 0 auto;
+}
+
+.hint {
+	color: #fff;
+	font-family: roboto-thin;
+	text-align: center;
+	margin: 20px 0;
+	font-size:20px;
+}
+
+.menu {
+    background-color: #F4F8E7;
+}
+
+.profile-preview {
+	background: url('../img/side_bg.jpg') no-repeat;
+	background-size:cover;
+}
+/*override*/
+.item-avatar > img:first-child {
+	border-radius:50%;
+}
+
+.profile-preview > h2{
+	color:#fff;
+	font-family: roboto-lt;
+}
+
+.link {
+	color:#E6E7E8;
+	text-decoration:none;
+}
+
+.link-more {
+	font-family:roboto;
+	text-align:center;
+	color:#2284C6;
+	text-decoration:none;
+}
+
+.side-menu-options > h4 {
+	color:#58585B;
+	margin-bottom:2px;
+	margin-left:10px;
+	font-family: roboto;
+}
+
+.side-menu-options > hr {
+	color:#58585B;
+	border-top:1.5px solid #58585B;
+	margin-left:10px;
+	margin-right:10px;
+	margin-top:1px;
+}
+
+.side-menu-options > a {
+	background-color:#F4F8E7;
+	color:#808284;
+	border-width:0px;
+	padding-bottom: 3px;
+	padding-top:5px;
+	margin-left:10px;
+	font-family: roboto;
+}
+.side-menu-options > a > i {
+	color:#D1D2D4;
+	margin-right:5px;
+}
+
+.side-menu-footer {
+	background-color:#F4F8E7;
+	border-width:0px;
+	margin:10px;
+}
+
+.side-menu-footer > p {
+	color:#BBBDC0;
+	font-size:12px;
+	padding:8px;
+	text-align:center;
+}
+
+.category-title {
+	padding:15px;
+	padding-bottom: 5px;
+	margin-bottom:0px;
+	font-family: roboto-lt
+}
+
+.browse-card > a {
+	text-decoration: none;
+}
+
+.browse-card-img {
+	 height: 200px;
+}
+
+.browse-card-img > .icon-music {
+	height: 140px;
+	width: 140px;
+	border-radius:50%;
+	box-shadow: 0px 5px 10px rgba(0,0,0,.4);
+	margin: 30px auto;
+}
+
+.browse-card-txt > h3 {
+	text-align:center;
+	font-family:roboto;
+}
+
+.browse-card-txt > p {
+	text-align:center;
+	font-family:roboto-lt;
+}
+.item button {
+	height: 60px;
+	width: 60px;
+}
+
+button.button-fab-yellow {
+	background:#F8ED31;
+	border:0px;
+	color:#8A5D3B;
+	border-radius: 50%;
+}
+
+button.selected {
+	background: #57ba47 !important;
+}
+
+
+.short {
+   height: 100px;
+   overflow: hidden;
+   padding-bottom: 50px;
+}
+
+.accord {
+	/*-webkit-transition: all .2s;
+   transition: all .2s;*/
+}
+
+.full {
+	
+}
+
+.pane {
+	background-color:#fff;
+}
+
+.logo-bar {
+	background :url('../img/logo.png') no-repeat;
+	width : 30px;
+	height : 30px;
+	display :inline-block;
+	background-size:contain;
+}
+
+.bar.bar-stable .title{
+	text-align: left;
+	font-family: roboto-lt;
+	padding-left:0px;
+	margin-left:0px;
+	color: #00A79D;
+}
+
+.bar-stable .button.button-icon {
+	color:#00A79D;
+}
+
+.detail-card-head {
+	box-shadow: 0px 5px 10px rgba(0,0,0,.1);
+}
+
+.detail-card-head > .item-image {
+	height: 200px;
+}
+
+.detail-card-head > .item-image > .icon-music {
+	border-radius:50%;
+	box-shadow: 0px 5px 10px rgba(0,0,0,.4);
+	margin: 30px auto;
+	height: 140px;
+	width: 140px;
+}
+
+.detail-card-head h2 {
+	text-align:center; font-family:roboto;
+}
+.detail-card-head p {
+	text-align:center; font-family: roboto;
+}
+
+.detail-card-head button {
+	float:right; background:#F8ED31; width:100px; border:0px; color:#8A5D3B
+}
+
+.detail-card-item {
+	box-shadow: 0px 5px 10px rgba(0,0,0,.1);
+}
+
+.detail-card-item h3 {
+	text-align:left;
+	font-family:roboto;
+}
+
+.detail-card-item p{
+	text-align: justify;
+    text-justify: inter-word;
+    padding: 10px;
+    font-family:roboto-lt;
+    padding-bottom:0px;
+}
+
+.row.unlimited-items {
+  flex-wrap: wrap;
+}
+
+.row.unlimited-items .col{
+  flex: none;
+  width: 50%;
+}
+
+
+.board {
+	width: 100%;
+	height: 100px;
+	background: #57ba47;
+	position: relative;
+	overflow: hidden;
+}
+
+.board .tick{
+	width: 6px;
+	height: 100px;
+	position: absolute;
+	z-index: 1000;
+	top: 0;
+	left: 25%;
+	background: #fff;
+	box-shadow: 3px 3px 10px rgba(0,0,0,.5);
+}
+
+.board .wrap {
+	position: absolute;
+	height: 100px;
+	top: 0;
+	left: 0;
+	webkit-transition: all linear 1s;
+   	transition: all linear 1s;
+}
+
+
+.board .wrap .melo {
+	position: absolute;
+	width: 45px;
+	height: 45px;
+	top: 30px;
+	left: 20%;
+	background: #ddd;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 45px;
+	text-transform: uppercase;
+}
+
+.item-right {
+    position: absolute; top: 0; right: 0; padding: 14px 48px 16px 16px; max-width: 65%;
+    line-height: 30px; text-align: right;
+}
+
+hr { display: block; height: 1px;
+    border: 0; border-top: 1px solid #ccc;
+    margin-top: 12px; margin-bottom:2px; padding: 0;}
+
+.item {
+    webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+
+
+td-cards {
+  display: block;
+}
+
+td-card {
+  position: absolute;
+  left: 50%;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  margin-left: -100px;
+  width: 200px;
+  height: 200px;
+}
+/*
+
+
+td-card.card-0 {
+  -webkit-transform: translate3d(0, 0px, 0);
+  transform: translate3d(0, 0px, 0);
+  top: 0px;
+  z-index: 10;
+}
+td-card.card-1 {
+  -webkit-transform: translate3d(0, 4px, 0);
+  transform: translate3d(0, 4px, 0);
+  z-index: 9;
+}
+td-card.card-2 {
+  -webkit-transform: translate3d(0, 8px, 0);
+  transform: translate3d(0, 8px, 0);
+  z-index: 8;
+}
+*/
+
+td-card .image {
+  position: relative;
+}
+
+td-card img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.yes-text {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 30px;
+  color: rgb(111, 250, 111);
+  opacity: 0;
+}
+.no-text {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: rgb(255, 115, 115);
+  opacity: 0;
+}
+
+.fade {
+  -webkit-transition: 0.2s opacity linear;
+  transition: 0.2s opacity linear;
+  opacity: 0;
+}
+
+.sounded {
+    background-color: #57ba47;
+}
+
+.discovery {
+	background: url('../img/discover.jpg') no-repeat;
+	background-size:cover;
+	height:200px;
+	position:relative;
+}
+
+.discovery > a{
+	font-family: roboto-lt;
+	font-size: 30px;
+	text-align: right;
+	color: #fff;
+	text-decoration: none;
+	position:absolute;
+	bottom:25px;
+	left:25px;
+}
+
+.subtitle{
+	margin-left:10px;
+	font-family: roboto;
+}
+
+.item-genre {
+	height:100px;
+	font-family: roboto-lt;
+	font-size: 20px;
+	text-align: right;
+	color: #fff;
+	position:relative;
+}
+
+.item-genre .txt {
+	position:absolute;
+	bottom:5px;
+	right:5px;
+	background-color:#000;
+	padding:5px;
+}
+
+.mood-list .row {
+	padding:0px;
+} 
+
+
+.play-content {
+	background: url('../img/play_bg.jpg') no-repeat;
+	background-size:100% 100%;
+}
+
+.album-cover {
+	margin-top:35px;
+	margin-bottom:25px;
+	margin-left:auto;
+	margin-right:auto;
+	border-radius: 50%;
+	width: 85%;
+	color:#fff;
+    position: absolute;
+    top: -20px;
+    left: 16px;
+}
+
+.play-div {
+	text-align: center;
+}
+
+.play-div > h2{
+	font-family: roboto-thin;
+	margin:5px;
+	color:#fff;
+}
+
+.play-div> h4{
+	margin:5px;
+	font-family: roboto-black;
+	color:#fff;
+}
+
+.play-div .lyric {
+	font-family: roboto;
+	margin-top:15px;
+	color:#fff;
+}
+
+.play-div .option{
+	font-size:90px;
+	color:#fff;
+}
+
+
+.bottom-action {
+    padding-top: 250px;
+}
+
+.bottom-action .lyric {
+    height: 150px;
+    overflow: auto;
+}
+
+.image input {
+    display: none;
+}
+
+.player-control {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 0;
+    left: 52px;
+    font-size: 3.5em;
+    margin-top: 50px;
+    color: #fff;
+    padding-top: 20px;
+}
+
+.profile-banner {
+	background: url('../img/banner_bg.jpg') no-repeat;
+	background-size: cover;
+	background-position: center center;
+	height: 150px;
+}
+.profile-banner> h4{
+	font-family: roboto-thin;
+	text-align: center;
+	color: #fff;
+	font-size:18px;
+}
+
+.profile-tab {
+	border-width: 0px !important;
+	background-color:#00A79D;
+	font-family: roboto-lt;
+	padding:0px !important;
+}
+
+.person-item h4{
+	text-align: center;
+	font-family: roboto;
+	font-size:13px;
+}
+
+.music-item h4{
+	text-align: center;
+	font-family: roboto;
+	font-size:13px;
+	margin-top:0px;
+	margin-bottom:10px;
+}
+
+.music-item h3{
+	text-align: center;
+	font-family: roboto-lt;
+	font-size:16px;
+	margin-top:5px;
+	margin-bottom:0px;
+}
+
+.post-tl-left {
+	font-size: 20px;
+	text-align: center;
+	color:#00A79D;
+}
+
+.post-tl-left .icon {
+	font-size: 30px;
+}
+
+.post-tl-right {
+	padding-top:0px;
+	margin-top:0px;
+}
+
+.post-tl-right .date {
+	text-align: right;
+	color:#1B75BB;
+}
+
+.post-tl-right .song-title{
+	font-family: roboto-lt;
+	margin-bottom: 0px;
+	font-size:17px;
+	font-color:#000;
+}
+
+.post-tl-right .song-artist{
+	font-family: roboto;
+	margin-bottom: 0px;
+	font-size:14px;
+	font-color:#000;
+}
+
+.dislike-btn, .like-btn {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.list-post-btn {
+    display: inline-block;
+}
+
+.data-item h3 {
+	text-align: center;
+	font-family: roboto-thin;
+}
+.data-item h4 {
+	text-align: center;
+	font-family: roboto;
+}

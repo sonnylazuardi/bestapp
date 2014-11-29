@@ -1,0 +1,24 @@
+<ion-view title="TRENDING">
+  <ion-content>
+    <h4 class="subtitle">TOP 8 TODAY</h4>
+    <div class="row unlimited-items music-item">
+      <div class="col" ng-repeat="musicToday in dataToday">
+        <div style="background: url('{{musicToday.CoverArtFilename}}'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 120px; width: 120px; background-color: #fff; border-radius:10%; margin: 0px auto; padding-top:15px;" ng-click="go(musicToday.SongID, 'today')">
+        </div>
+        <h3>{{musicToday.SongName}}</h3>
+        <h4>{{musicToday.ArtistName}}</h4>
+      </div>
+      
+    </div>
+    <h4 class="subtitle">TOP 8 THIS MONTH</h4>
+    <div class="row unlimited-items music-item">
+      <div class="col" ng-repeat="musicThisMonth in dataThisMonth">
+        <div style="background: url('{{musicThisMonth.CoverArtFilename}}'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 120px; width: 120px; background-color: #fff; border-radius:10%; margin: 0px auto; padding-top:15px;" ng-click="go(musicThisMonth.SongID, 'thismonth')">
+        </div>
+        <h3>{{musicThisMonth.SongName}}</h3>
+        <h4>{{musicThisMonth.ArtistName}}</h4>
+      </div>
+      
+    </div>
+  </ion-content>
+</ion-view>

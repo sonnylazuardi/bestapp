@@ -1,0 +1,61 @@
+<ion-view title="STATISTICS">
+  <ion-content>
+    <div>
+      <div class="profile-banner">
+        <br>
+        <div style="background: url('img/harits.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 85px; width: 85px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+        </div>
+        <h4>Muhammad Harits SAHE</h4>
+      </div>
+      <div class="button-bar">
+        <a class="button profile-tab" ng-click="showStatsFunc(0)">Data</a>
+        <a class="button profile-tab" ng-click="showStatsFunc(1)">Recent</a>
+      </div>
+      <br>
+      <div class="row unlimited-items data-item" ng-show="showStats == 0">
+        <div class="col">
+          <h3>3</h3>
+          <h4>Likes</h4>
+        </div>
+        <div class="col">
+          <h3>4</h3>
+          <h4>Following</h4>
+        </div>
+        <div class="col">
+          <h3>3</h3>
+          <h4>Followers</h4>
+        </div>
+        <div class="col">
+          <h3>3</h3>
+          <h4>Friends</h4>
+        </div>
+      </div>
+      <div class="row unlimited-items music-item" ng-show="showStats == 1">
+        <div class="col">
+          <div style="background: url('img/linkinpark.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 100px; width: 100px; background-color: #fff; border-radius:10%; margin: 0px auto; padding-top:15px;">
+          </div>
+          <h3>Castle of Glass</h3>
+          <h4>Linkin Park</h4>
+        </div>
+        <div class="col">
+          <div style="background: url('img/linkinpark.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 100px; width: 100px; background-color: #fff; border-radius:10%; margin: 0px auto; padding-top:15px;">
+          </div>
+          <h3>Lost in the Echo</h3>
+          <h4>Linkin Park</h4>
+        </div>
+        <div class="col">
+          <div style="background: url('img/album.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 100px; width: 100px; background-color: #fff; border-radius:10%; margin: 0px auto; padding-top:15px;">
+          </div>
+          <h3>Warriors</h3>
+          <h4>Imagine Dragons</h4>
+        </div>
+        <div class="col">
+          <div style="background: url('img/raisa.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 100px; width: 100px; background-color: #fff; border-radius:10%; margin: 0px auto; padding-top:15px;">
+          </div>
+          <h3>Serba Salah</h3>
+          <h4>Raisa</h4>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

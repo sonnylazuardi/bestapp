@@ -1,0 +1,55 @@
+<ion-view title="PROFILE">
+  <ion-content>
+    <div>
+      <div class="profile-banner">
+        <br>
+        <div style="background: url('img/harits.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 85px; width: 85px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+        </div>
+        <h4>Muhammad Harits SAHE</h4>
+      </div>
+      <div class="button-bar">
+        <a class="button profile-tab" ng-click="showFollowersFunc(0)">Following</a>
+        <a class="button profile-tab" ng-click="showFollowersFunc(1)">Followers</a>
+      </div>
+      <div class="row unlimited-items person-item" ng-show="showFollowers == 0">
+        <div class="col item-genre">
+          <div style="background: url('img/alif.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 65px; width: 65px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+          </div>
+          <h4>Alif Raditya Rochman</h4>
+        </div>
+        <div class="col item-genre">
+          <div style="background: url('img/iskandar.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 65px; width: 65px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+          </div>
+          <h4>Iskandar Setiadi</h4>
+        </div>
+        <div class="col item-genre">
+          <div style="background: url('img/sonny.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 65px; width: 65px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+          </div>
+          <h4>Sonny Lazuardi Hermawan</h4>
+        </div>
+        <div class="col item-genre">
+          <div style="background: url('img/genta.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 65px; width: 65px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+          </div>
+          <h4>Genta Indra Winata</h4>
+        </div>
+      </div>
+      <div style="margin-top:5px;" class="row unlimited-items person-item" ng-show="showFollowers == 1">
+        <div class="col item-genre">
+          <div style="background: url('img/alif.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 65px; width: 65px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+          </div>
+          <h4>Alif Raditya Rochman</h4>
+        </div>
+        <div class="col item-genre">
+          <div style="background: url('img/iskandar.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 65px; width: 65px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+          </div>
+          <h4>Iskandar Setiadi</h4>
+        </div>
+        <div class="col item-genre">
+          <div style="background: url('img/sonny.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 65px; width: 65px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+          </div>
+          <h4>Sonny Lazuardi Hermawan</h4>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
