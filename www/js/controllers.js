@@ -37,8 +37,8 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   }
 })
 
-.controller('ReportCtrl', function($scope,Toilet){
-  
+.controller('ReportCtrl', function($scope,$stateParams, Toilet){
+  var id = $stateParams.id;
 })
 
 .controller('SearchCtrl', function($scope, $rootScope, $location, Toilet, Geolocation) {
@@ -134,6 +134,10 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   $scope.statistic = function() {
     $location.path('/toilet/statistic');
   }
+  $scope.report = function() {
+    $location.path('/report/' + id);
+  }
+
   $scope.like = function() {
 
   }

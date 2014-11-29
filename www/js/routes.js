@@ -52,7 +52,7 @@ angular.module('inklusik.routes', ['simpleLogin'])
       controller: 'PopularCtrl'
     },
     'report': {
-      url:'/report',
+      url:'/report/:id',
       templateUrl: "templates/report.html",
       controller: 'ReportCtrl'
     }

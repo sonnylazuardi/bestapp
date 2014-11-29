@@ -835,3 +835,7 @@ td-card img {
 	color:#fff;
 	border-width: 0px
 }
+
+select {
+	background-color: #FCFCFC !important;
+}
