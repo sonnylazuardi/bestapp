@@ -9,7 +9,7 @@
         <i class="ion-stats-bars"></i> Statistic
       </button>
 
-      <button class="button absolute-left" ng-click="statistic()">
+      <button class="button absolute-left" ng-click="report()">
         <i class="ion-paper-airplane"></i> Report
       </button>
       <br>
@@ -20,7 +20,7 @@
       <div class="toilet-clean-level">
         <div class="range range-positive">
           <i class="icon ion-sad"></i>
-          <input type="range" name="volume">
+          <input type="range" name="volume" ng-model="toilet.cleanliness" disabled="disabled" min="0" max="10">
           <i class="icon ion-happy"></i>
         </div>
       </div>

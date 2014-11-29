@@ -1,15 +1,22 @@
 <ion-view title="REPORT">
   <ion-content>
 	<div class="list">
-	  <label class="item item-input">
-	    <input type="text" placeholder="First Name">
+	  <label class="item item-input item-select">
+	    <div class="input-label">
+	      Category
+	    </div>
+	    <select>
+	      <option>Kebersihan</option>
+	      <option selected>Fasilitas</option>
+	      <option>Kerusakan</option>
+	    </select>
 	  </label>
-	  <label class="item item-input">
-	    <input type="text" placeholder="Last Name">
+	  <label class="item item-input" style="height:100px">
+	    <textarea style="min-height:80px;" placeholder="Comments"></textarea>
 	  </label>
-	  <label class="item item-input">
-	    <textarea placeholder="Comments"></textarea>
-	  </label>
+	  <button style="margin:10px" class="button pull-right">
+		  Submit
+	  </button>
 	</div>
   </ion-content>
 </ion-view>

@@ -2,7 +2,7 @@
   <ion-content class="map-content" >
     <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" id="full-map" bounds="map.bounds">
         
-        <ui-gmap-markers models="randomMarkers" coords="'self'" icon="'icon'" click="'onClick'">
+        <ui-gmap-markers models="randomMarkers" coords="'self'" icon="'icon'" click="'onClick'" options="'options'" events="'events'">
             <ui-gmap-windows show="show">
                 <div ng-non-bindable>
                     <div><strong>{{title}}</strong></div>

@@ -68,11 +68,22 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
         longitude: longitude,
         toiletId: $scope.toilets[i].id,
         title: $scope.toilets[i].name,
+        options: { draggable: true },
         description: $scope.toilets[i].description,
         icon: 'http://sonnylazuardi.github.io/bestapp/www/img/marker.png',
-        show: false
+        show: false,
+        events: {
+          dragend: function (marker, eventName, args) {
+            console.log('marker dragend');
+            var lat = marker.getPosition().lat();
+            var lon = marker.getPosition().lng();
+            console.log(lat);
+            console.log(lon);
+          }
+        }
       };
       ret.onClick = function() {
+        alert('click');
         ret.show = !ret.show;
       };
       ret[idKey] = i;
