@@ -599,12 +599,8 @@ td-card img {
 	background: url('../img/side_bg.jpg') no-repeat;
 	background-size: cover;
 	background-position: center center;
-<<<<<<< HEAD
-	min-height: 180px;
-    color: #fff;
-=======
 	min-height: 150px;
->>>>>>> f01b4a0640d0a398e6de5f1f27fe23b2a31495ae
+    color: #fff;
 }
 .profile-banner h4{
 	font-family: roboto-thin;
