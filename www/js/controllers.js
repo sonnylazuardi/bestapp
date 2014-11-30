@@ -96,6 +96,9 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
     var id = $stateParams.id;
     Toilet.getById(id).then(function(data){
       $scope.toilet = data;
+      $scope.male = data.male;
+      $scope.female = data.female;
+      $scope.disable = data.disable;
     });
     Comment.getByToiletId(id).then(function(data){
       console.log("comment");
@@ -140,19 +143,26 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   $scope.report = function() {
     $location.path('/report/' + id);
   }
-
-  $scope.like = function() {
-
-  }
-  $scope.dislike = function() {
-
-  }
-  $scope.male = function() {
-
-  }
-  $scope.female = function() {
-
-  }
+  $scope.status = {
+    male : false,
+    female : false,
+    disable : false, 
+    doMale: function() {
+      $scope.status.male = !$scope.status.male;
+    },
+    doFemale: function() {
+      $scope.status.female = !$scope.status.female;
+    },
+    doDisable: function() {
+      $scope.status.disable = !$scope.status.disable;
+    },
+    doLike: function() {
+      $scope.toilet.like++;
+    },
+    doDislike: function() {
+      $scope.toilet.dislike++;
+    }
+  };
   $scope.form = {
     newComment:""
   };
@@ -178,10 +188,53 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   }
 })
 
-.controller('ToiletAddCtrl', function($scope, Geolocation) {
+.controller('ToiletAddCtrl', function($scope, Geolocation, $cordovaCamera) {
   Geolocation.init($scope);
-  $scope.name = 'Toilet Name';
-  $scope.description = 'Toilet Description';
+  $scope.toilet = {
+    name : 'Toilet Name',
+    description : 'Toilet Description',
+    like: 0,
+    dislike: 0
+  };
+  $scope.status = {
+    male : false,
+    female : false,
+    disable : false, 
+    doMale: function() {
+      $scope.status.male = !$scope.status.male;
+    },
+    doFemale: function() {
+      $scope.status.female = !$scope.status.female;
+    },
+    doDisable: function() {
+      $scope.status.disable = !$scope.status.disable;
+    },
+    doLike: function() {
+      $scope.toilet.like++;
+    },
+    doDislike: function() {
+      $scope.toilet.dislike++;
+    },
+    doCamera: function() {
+      var options = {
+        quality : 75,
+        destinationType : Camera.DestinationType.DATA_URL,
+        sourceType : Camera.PictureSourceType.CAMERA,
+        allowEdit : true,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 100,
+        targetHeight: 100,
+        popoverOptions: CameraPopoverOptions,
+        saveToPhotoAlbum: false
+      };
+
+      $cordovaCamera.getPicture(options).then(function(imageData) {
+        console.log(imageData);
+      }, function(err) {
+        alert('error taking picture')
+      });
+    }
+  };
 })
 
 .controller('ToiletStatisticCtrl', function($scope) {

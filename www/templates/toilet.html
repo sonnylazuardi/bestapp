@@ -26,26 +26,29 @@
       </div>
       <div class="toilet-button row">
         <div class="col">
-          <button class="button button-block button-balanced" ng-click="like()"><i class="ion-thumbsup"></i> 2</button>
+          <button class="button button-block button-balanced" ng-click="status.doLike()"><i class="ion-thumbsup"></i> {{toilet.like}}</button>
         </div>
         <div class="col">
-          <button class="button button-block button-assertive" ng-click="dislike()"><i class="ion-thumbsdown"></i> 3</button>
+          <button class="button button-block button-assertive" ng-click="status.doDislike()"><i class="ion-thumbsdown"></i> {{toilet.dislike}}</button>
         </div>
       </div>
       <div class="toilet-button row">
         <div class="col">
-          <button class="button button-block button-light" ng-click="male()">
-            <i class="fa fa-icon fa-male fa-lg"></i>
+          <button class="button button-block button-light" ng-click="status.doMale()">
+            <i class="fa fa-icon fa-male fa-lg" ng-show="!status.male"></i>
+            <i class="fa fa-icon fa-male fa-lg" style="color:#2980b9" ng-show="status.male"></i>
           </button>
         </div>
         <div class="col">
-          <button class="button button-block button-light" ng-click="female()">
-            <i class="fa fa-icon fa-female fa-lg"></i>
+          <button class="button button-block button-light" ng-click="status.doFemale()">
+            <i class="fa fa-icon fa-female fa-lg" ng-show="!status.female"></i>
+            <i class="fa fa-icon fa-female fa-lg" style="color:#2980b9" ng-show="status.female"></i>
           </button>
         </div>
         <div class="col">
-          <button class="button button-block button-light" ng-click="disable()">
-            <i class="fa fa-icon fa-wheelchair fa-lg"></i>
+          <button class="button button-block button-light" ng-click="status.doDisable()">
+            <i class="fa fa-icon fa-wheelchair fa-lg" ng-show="!status.disable"></i>
+            <i class="fa fa-icon fa-wheelchair fa-lg" style="color:#2980b9" ng-show="status.disable"></i>
           </button>
         </div>
       </div>

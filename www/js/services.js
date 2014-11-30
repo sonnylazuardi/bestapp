@@ -83,7 +83,6 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
         }
       };
       ret.onClick = function() {
-        alert('click');
         ret.show = !ret.show;
       };
       ret[idKey] = i;

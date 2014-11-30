@@ -6,14 +6,14 @@
     </ui-gmap-google-map>
     <div class="profile-banner">
       <br>
-      <div style="background: url('img/logo.png'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 85px; width: 85px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+      <div style="background: url('img/logo.png'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 85px; width: 85px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;" ng-click="status.doCamera()">
       </div>
       <div class="list">
         <label class="item item-input">
-          <input type="text" ng-model="name">
+          <input type="text" ng-model="toilet.name">
         </label>
         <label class="item item-input">
-          <textarea id="" rows="4" ng-model="description"></textarea>
+          <textarea id="" rows="4" ng-model="toilet.description"></textarea>
         </label>
       </div>
       <div class="toilet-clean-level">
@@ -25,26 +25,29 @@
       </div>
       <div class="toilet-button row">
         <div class="col">
-          <button class="button button-block button-balanced" type="submit" ng-click="like()"><i class="ion-thumbsup"></i> 0</button>
+          <button class="button button-block button-balanced" ng-click="status.doLike()"><i class="ion-thumbsup"></i> {{toilet.like}}</button>
         </div>
         <div class="col">
-          <button class="button button-block button-assertive" type="submit" ng-click="dislike()"><i class="ion-thumbsdown"></i> 0</button>
+          <button class="button button-block button-assertive" ng-click="status.doDislike()"><i class="ion-thumbsdown"></i> {{toilet.dislike}}</button>
         </div>
       </div>
       <div class="toilet-button row">
         <div class="col">
-          <button class="button button-block button-light" type="submit" ng-click="male()">
-            <i class="fa fa-icon fa-male fa-lg"></i>
+          <button class="button button-block button-light" ng-click="status.doMale()">
+            <i class="fa fa-icon fa-male fa-lg" ng-show="!status.male"></i>
+            <i class="fa fa-icon fa-male fa-lg" style="color:#2980b9" ng-show="status.male"></i>
           </button>
         </div>
         <div class="col">
-          <button class="button button-block button-light" type="submit" ng-click="male()">
-            <i class="fa fa-icon fa-female fa-lg"></i>
+          <button class="button button-block button-light" ng-click="status.doFemale()">
+            <i class="fa fa-icon fa-female fa-lg" ng-show="!status.female"></i>
+            <i class="fa fa-icon fa-female fa-lg" style="color:#2980b9" ng-show="status.female"></i>
           </button>
         </div>
         <div class="col">
-          <button class="button button-block button-light" type="submit" ng-click="male()">
-            <i class="fa fa-icon fa-wheelchair fa-lg"></i>
+          <button class="button button-block button-light" ng-click="status.doDisable()">
+            <i class="fa fa-icon fa-wheelchair fa-lg" ng-show="!status.disable"></i>
+            <i class="fa fa-icon fa-wheelchair fa-lg" style="color:#2980b9" ng-show="status.disable"></i>
           </button>
         </div>
       </div>
