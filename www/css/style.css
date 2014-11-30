@@ -836,6 +836,17 @@ td-card img {
 	border-width: 0px
 }
 
+.buttons.left-buttons {
+    width: 50px !important;
+    display: block !important;
+    padding-top: 1px;
+}
+
 select {
 	background-color: #FCFCFC !important;
+
+}
+p.hint {
+    color: #555;
+    padding: 20px;
 }

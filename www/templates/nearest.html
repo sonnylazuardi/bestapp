@@ -3,8 +3,17 @@
     <div class="title-banner">
       <h2>Toilet Near You</h2>
     </div>
-      <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" id="small-map2">
-      <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+      <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" id="small-map2" bounds="map.bounds">
+        <ui-gmap-markers models="randomMarkers" coords="'self'" icon="'icon'" click="'onClick'" options="'options'" events="'events'">
+            <ui-gmap-windows show="show">
+                <div ng-non-bindable>
+                    <div><strong>{{title}}</strong></div>
+                    <div>{{description}}</div>
+                    <div><a href="#/toilet/{{toiletId}}" class="button button-small button-balanced">View Toilet</a></div>
+                </div>
+            </ui-gmap-windows>
+        </ui-gmap-markers>
+        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
       </ui-gmap-marker>
     </ui-gmap-google-map>
     <div class="card" ng-repeat="toilet in toilets">
