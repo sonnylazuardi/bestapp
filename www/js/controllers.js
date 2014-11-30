@@ -136,6 +136,9 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
       $scope.marker.coords.longitude = data.longitude;
       $scope.map.center.latitude = data.latitude;
       $scope.map.center.longitude = data.longitude;
+      if ($scope.toilet.cleanliness < 5) {
+        $scope.marker.icon = 'http://sonnylazuardi.github.io/bestapp/www/img/marker-dirt.png';
+      }
     });
     Comment.getByToiletId(id).then(function(data){
       $scope.comments = data
@@ -160,6 +163,7 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
       }
     }
   }
+
 
   $scope.statistic = function(id) {
     console.log(id);
