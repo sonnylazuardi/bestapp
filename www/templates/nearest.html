@@ -19,15 +19,15 @@
         <div class="item item-text-wrap" ng-click="goToToilet(toilet.id)">
           <div class="row">
             <div class="col col-33 toilet-thumb-container">
-              <div class="toilet-thumb">
+              <div style="background: url('img/toilet/{{toilet.id}}.jpg') no-repeat;background-size: cover;background-position: center center;border-radius: 50%;width: 80px;height: 80px;" class="toilet-thumb">
               </div>
             </div>
             <div class="col col-67 head-title">
               <h4>{{toilet.name}}</h4>
               <div class="feature">
-                <i class="fa fa-icon fa-male fa-lg"></i>
-                <i class="fa fa-icon fa-female fa-lg"></i>
-                <i class="fa fa-icon fa-wheelchair fa-lg"></i>
+                <i class="fa fa-icon fa-male fa-lg" ng-show="toilet.male==1"></i>
+                <i class="fa fa-icon fa-female fa-lg" ng-show="toilet.female==1"> </i>
+                <i class="fa fa-icon fa-wheelchair fa-lg" ng-show="toilet.disabled==1"></i>
               </div>
               <div class="row like-stat">
                 <div class="col">

@@ -12,12 +12,12 @@
 	    </select>
 	  </label>
 	  <label class="item item-input" style="height:100px">
-	    <textarea style="min-height:80px;" placeholder="Comments"></textarea>
+	    <textarea style="min-height:80px;" placeholder="Comments" ng-model="form.comment"></textarea>
 	  </label>
 	  <p class="hint">
 	  	<i class="ion-paper-airplane"></i> This will send email and SMS to <em>Dinas Kebersihan Kota Bandung</em>
 	  </p>
-	  <button style="margin:10px" class="button pull-right">
+	  <button style="margin:10px" class="button pull-right"  ng-click="report()">
 		  Send
 	  </button>
 	</div>

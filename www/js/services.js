@@ -16,7 +16,7 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
 
 .factory('Geolocation', function($cordovaGeolocation, Toilet, $timeout, $q) {
   var self = this;
-  self.init = function($scope) {
+  self.init = function($scope, loadNearest) {
     
     // $cordovaGeolocation
     //   .getCurrentPosition()
@@ -49,15 +49,28 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
       visible: true
     };
     $scope.toilets = [];
-    Toilet.getAll().then(function(data) {
-      console.log(data);
-      $scope.toilets = data;
-      var markers = [];
-      angular.forEach(data, function(item) {
-        markers.push(createMarker(item.id+1, item));
-      });
-      $scope.randomMarkers = markers;
-    })
+
+    if (loadNearest != null) {
+      Toilet.getNearest().then(function(data) {
+        console.log(data);
+        $scope.toilets = data;
+        var markers = [];
+        angular.forEach(data, function(item) {
+          markers.push(createMarker(item.id+1, item));
+        });
+        $scope.randomMarkers = markers;
+      })
+    } else {
+      Toilet.getAll().then(function(data) {
+        console.log(data);
+        $scope.toilets = data;
+        var markers = [];
+        angular.forEach(data, function(item) {
+          markers.push(createMarker(item.id+1, item));
+        });
+        $scope.randomMarkers = markers;
+      })
+    }
 
     var createMarker = function(i, item, idKey) {
 
@@ -140,6 +153,38 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
       date : Date.now()
     };
     $http.post(serverUrl+'api/' + msg.user_id + '/toilet/' + toilet_id + '/comments',msg).success(function(data) {
+      if (data.data) {
+        var comments = data.data;
+        def.resolve(comments);
+      }
+    });
+    return def.promise
+  }
+
+  return self;
+})
+
+.factory('Report',function($http,serverUrl, $q){
+  var self = this;
+  self.getByUser = function(user_id){
+    var def = $q.defer();
+    $http.get(serverUrl+'api/user/' + user_id + '/reports/').success(function(data) {
+      if (data.data) {
+        var reports = data.data;
+        def.resolve(reports);
+      }
+    });
+    return def.promise;
+  }
+  self.postReport = function(user_id,toilet_id,comment,cat){
+    var def = $q.defer();
+    var msg = {
+      user_id : 1, //sample
+      subject : "Judul Rata",
+      category : cat,
+      content : comment
+    };
+    $http.post(serverUrl+'api/toilet/'+toilet_id+'/report',msg).success(function(data) {
       if (data.data) {
         var comments = data.data;
         def.resolve(comments);

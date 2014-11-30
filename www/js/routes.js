@@ -55,6 +55,11 @@ angular.module('inklusik.routes', ['simpleLogin'])
       url:'/report/:id',
       templateUrl: "templates/report.html",
       controller: 'ReportCtrl'
+    },
+    'listreport': {
+      url:'/listreport',
+      templateUrl: "templates/list-report.html",
+      controller: 'ListReportCtrl'
     }
   })
   

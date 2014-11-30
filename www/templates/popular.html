@@ -13,9 +13,9 @@
           <div class="col col-67 head-title">
             <h4>{{toilet.name}}</h4>
             <div class="feature">
-              <i class="fa fa-icon fa-male fa-lg"></i>
-              <i class="fa fa-icon fa-female fa-lg"></i>
-              <i class="fa fa-icon fa-wheelchair fa-lg"></i>
+              <i class="fa fa-icon fa-male fa-lg" ng-show="toilet.male==1"></i>
+              <i class="fa fa-icon fa-female fa-lg" ng-show="toilet.female==1"> </i>
+              <i class="fa fa-icon fa-wheelchair fa-lg" ng-show="toilet.disabled==1"></i>
             </div>
             <div class="row like-stat">
               <div class="col">

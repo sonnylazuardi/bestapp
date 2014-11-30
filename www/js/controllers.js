@@ -1,12 +1,21 @@
 angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-maps', 'highcharts-ng'])
 
-.controller('LoginCtrl', function($scope, $rootScope, simpleLogin) {
+.controller('LoginCtrl', function($scope, $rootScope, simpleLogin, $location) {
     $rootScope.loginShow = true;
     $rootScope.auth = false;
     $rootScope.MigmeLogin = function(){
     // 	window.open('http://diora.suitdev.com/authorize-migme');
     	$rootScope.loginShow = false;
     	$rootScope.auth = true;
+    }
+    $rootScope.guest = function(){
+      $rootScope.loginShow = false;
+      $rootScope.auth = true;
+    }
+    $rootScope.register = function(){
+      $rootScope.loginShow = false;
+      $rootScope.auth = true;
+      $location.path('register');
     }
 })
 
@@ -18,6 +27,13 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
     	$rootScope.loginShow = true;
     	$rootScope.auth = false;
     }
+})
+
+.controller('ListReportCtrl', function($scope, Report) {
+  var id = 1;
+  Report.getByUser(id).then(function(data){
+    $scope.reports = data;
+  });
 })
 
 .controller('HomeCtrl', function($scope, $rootScope, simpleLogin, $location) {
@@ -37,8 +53,19 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   }
 })
 
-.controller('ReportCtrl', function($scope,$stateParams, Toilet){
+.controller('ReportCtrl', function($scope,$stateParams, Toilet, Report,$location){
   var id = $stateParams.id;
+  var usid = 1;
+  $scope.form = {
+    category:"Fasilitas",
+    comment:""
+  };
+  $scope.report = function(){
+    Report.postReport(usid,1,$scope.form.comment,$scope.form.category).then(function(data){
+      console.log(data);
+      $location.path('nearest');
+    });
+  }
 })
 
 .controller('SearchCtrl', function($scope, $rootScope, $location, Toilet, Geolocation) {
@@ -55,12 +82,11 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
 })
 
 .controller('NearestCtrl', function($scope, Geolocation, Toilet, $location){
-  Geolocation.init($scope);
+  Geolocation.init($scope, true);
   
   Toilet.getNearest().then(function(data){
     console.log(data);
     $scope.toilets = data;
-
   });
 
   $scope.goToToilet = function(toiletId){
@@ -68,8 +94,10 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   }
 })
 
-.controller('RegisterCtrl', function($scope){
-
+.controller('RegisterCtrl', function($scope, $location){
+  $scope.register = function(){
+    $location.path('nearest');
+  }
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading, $timeout, Geolocation, uiGmapGoogleMapApi) {
@@ -122,11 +150,8 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
     options: { draggable: true },
     events: {
       dragend: function (marker, eventName, args) {
-        $log.log('marker dragend');
         var lat = marker.getPosition().lat();
         var lon = marker.getPosition().lng();
-        $log.log(lat);
-        $log.log(lon);
       }
     }
   }
