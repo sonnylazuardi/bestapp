@@ -15,8 +15,22 @@ angular.module('inklusik.filters', [])
 
    .filter('cut', function() {
     return function(text) {
-      return String(text).substr(0, 85);
+      return String(text).substr(0, 25);
     }
+  })
+
+    .filter('cutspace', function() {
+      return function(text) {
+        var idx = 0;
+        for (var i=0;i<text.length;i++){
+          if (text[i] == ' '){
+            idx = i;
+            break;
+          }
+        }
+        return String(text).substr(0, idx);
+      }
+
    })
 
    .filter('capitalize', function() {
