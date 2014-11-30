@@ -117,8 +117,13 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   });
 })
 
-.controller('TimelineCtrl', function($scope) {
+.controller('TimelineCtrl', function($scope, Comment) {
+  var id = 1;
+  Comment.getAllLike(id).then(function(data){
+    console.log(data);
+    $scope.likes = data;
 
+  });
 })
 
 .controller('ToiletCtrl', function($scope, $cordovaGeolocation, $location, $stateParams, Toilet, Comment) {

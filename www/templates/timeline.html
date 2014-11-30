@@ -3,16 +3,16 @@
     <div>
       <div class="profile-banner">
         <br>
-        <div style="background: url('img/harits.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 85px; width: 85px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+        <div style="background: url('img/profile/1.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 85px; width: 85px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
         </div>
         <h4>Muhammad Harits SAHE</h4>
       </div>
       <div>
-        <div class="row post-tl">
+        <div class="row post-tl" ng-repeat="like in likes">
           <div class="col post-tl-left">
             <div class="line-timeline">
             </div>
-            <div style="background: url('img/harits.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 65px; width: 65px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+            <div style="background: url('img/profile/1.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 65px; width: 65px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
             </div>
           </div>
           <div class="col col-75 post-tl-right">
@@ -21,50 +21,22 @@
                 liked
               </div>
               <div class="col date">
-                18/11/2014
+                {{like.date}}
               </div>
             </div>
             <div style="background-color:#E6E7E8;" class="row">
               <div class="col">
-                <div style="background: url('img/toilet-img.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 55px; width: 55px; background-color: #fff; border-radius:5%; margin: 0px auto; ">
+                <div style="background: url('img/toilet/{{like.id}}.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 55px; width: 55px; background-color: #fff; border-radius:5%; margin: 0px auto; ">
                 </div>
               </div>
               <div class="col col-75">
-                <p class="song-title">Toilet Labtek V</p>
-                <p class="song-artist">Lorem ipsum dolor sit amet</p>
+                <p class="song-title">{{like.toilet_name}}</p>
+                <p class="song-artist">{{like.toilet_desc}}</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="row post-tl">
-          <div class="col post-tl-left">
-            <div class="line-timeline">
-            </div>
-            <div style="background: url('img/harits.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 65px; width: 65px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
-            </div>
-          </div>
-          <div class="col col-75 post-tl-right">
-            <div class="row">
-              <div class="col">
-                liked
-              </div>
-              <div class="col date">
-                19/11/2014
-              </div>
-            </div>
-            <div style="background-color:#E6E7E8;" class="row">
-              <div class="col">
-                <div style="background: url('img/toilet-img.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 55px; width: 55px; background-color: #fff; border-radius:5%; margin: 0px auto; ">
-                </div>
-              </div>
-              <div class="col col-75">
-                <p class="song-title">Toilet Labtek V</p>
-                <p class="song-artist">Lorem ipsum dolor sit amet</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        
     </div>
   </ion-content>
 </ion-view>

@@ -144,6 +144,17 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
     return def.promise
   }
 
+  self.getAllLike = function(user_id){
+    var def = $q.defer();
+    $http.get(serverUrl+'api/' + user_id +'/toilet/like').success(function(data) {
+      if (data.data) {
+        var likes = data.data;
+        def.resolve(likes);
+      }
+    });
+    return def.promise;
+  }
+
   return self;
 })
 
