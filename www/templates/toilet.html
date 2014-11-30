@@ -13,7 +13,7 @@
         <i class="ion-paper-airplane"></i> Report
       </button>
       <br>
-      <div style="background: url('img/logo.png'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 85px; width: 85px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
+      <div style="background: url('img/profile/{{toilet.id}}.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 85px; width: 85px; background-color: #fff; border-radius:50%; margin: 0px auto; padding-top:15px;">
       </div>
       <h2>{{toilet.name}}</h2>
       <p>{{toilet.description}}</p>
@@ -58,11 +58,11 @@
       <div class="item item-text-wrap">
         <div class="row">
           <div class="col col-20 toilet-thumb-container">
-            <div class="chat-thumb">
+            <div style=" background: url('img/profile/{{comment.user_id}}.jpg') no-repeat;background-size: cover;background-position: center center;border-radius: 50%;width: 50px;height: 50px;" img/profile/harits.jpg class="chat-thumb">
             </div>
           </div>
           <div class="col col-80 head-title">
-            <h4>{{comment.title}}</h4>
+            <h4>{{comment.name}}</h4>
             <p>{{comment.content}}</p>
           </div>
         </div>

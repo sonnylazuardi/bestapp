@@ -150,13 +150,14 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
 .factory('Report',function($http,serverUrl, $q){
   var self = this;
   self.getByUser = function(user_id){
-    $http.get(serverUrl+'api/user/' + user_id + '/reports' + toilet_id).success(function(data) {
+    var def = $q.defer();
+    $http.get(serverUrl+'api/user/' + user_id + '/reports/').success(function(data) {
       if (data.data) {
         var reports = data.data;
         def.resolve(reports);
       }
     });
-    
+    return def.promise;
   }
   self.postReport = function(user_id,toilet_id,comment,cat){
     var def = $q.defer();
@@ -166,7 +167,7 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
       category : cat,
       content : comment
     };
-    $http.post(serverUrl+'api/toilet/'+'toilet_id'+'/report',msg).success(function(data) {
+    $http.post(serverUrl+'api/toilet/'+toilet_id+'/report',msg).success(function(data) {
       if (data.data) {
         var comments = data.data;
         def.resolve(comments);

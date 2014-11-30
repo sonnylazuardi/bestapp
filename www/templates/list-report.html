@@ -4,18 +4,18 @@
         <div class="item item-text-wrap" ng-click="goToToilet(toilet.id)">
           <div class="row">
             <div class="col col-33 toilet-thumb-container">
-              <div class="toilet-thumb">
+              <div style="background: url('img/toilet/{{report.toilet_id}}.jpg') no-repeat;background-size: cover;background-position: center center;border-radius: 50%;width: 80px;height: 80px;" class="toilet-thumb">
               </div>
             </div>
             <div class="col col-67 head-title">
-              <h4>Toilet Imba</h4>
+              <h4>{{report.toilet_name}}</h4>
               <p>
-                Lorem ipsum sir amet dolomorot
+                {{report.content}}
               </p>
             </div>
           </div>
-          <div class="distance" style="width:130px">
-            Responded
+          <div class="distance" style="width:130px" ng-show="report.status == 'responded'">
+            {{report.status}}
           </div>
         </div>  
     </div>

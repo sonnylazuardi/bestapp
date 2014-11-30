@@ -721,23 +721,13 @@ td-card img {
 }
 
 .toilet-thumb {
-	background: url('../img/toilet-img.jpg') no-repeat;
-    background-size: cover;
-    background-position: center center;
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
+	
     display: inline-block;
     margin-top: 10px;
 }
 
 .chat-thumb {
-    background: url('../img/toilet-img.jpg') no-repeat;
-    background-size: cover;
-    background-position: center center;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+   
     display: inline-block;
     margin-top: 10px;
 }

@@ -1,12 +1,21 @@
 angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-maps', 'highcharts-ng'])
 
-.controller('LoginCtrl', function($scope, $rootScope, simpleLogin) {
+.controller('LoginCtrl', function($scope, $rootScope, simpleLogin, $location) {
     $rootScope.loginShow = true;
     $rootScope.auth = false;
     $rootScope.MigmeLogin = function(){
     // 	window.open('http://diora.suitdev.com/authorize-migme');
     	$rootScope.loginShow = false;
     	$rootScope.auth = true;
+    }
+    $rootScope.guest = function(){
+      $rootScope.loginShow = false;
+      $rootScope.auth = true;
+    }
+    $rootScope.register = function(){
+      $rootScope.loginShow = false;
+      $rootScope.auth = true;
+      $location.path('register');
     }
 })
 
@@ -86,8 +95,10 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   }
 })
 
-.controller('RegisterCtrl', function($scope){
-
+.controller('RegisterCtrl', function($scope, $location){
+  $scope.register = function(){
+    $location.path('nearest');
+  }
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading, $timeout, Geolocation, uiGmapGoogleMapApi) {
