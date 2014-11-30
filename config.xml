@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.lettoi.lettoi" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Lettoi</name>
+<widget id="com.simba.smarttoilet" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Smart Toilet</name>
   <description>
-    Find the best public toilet
+    Find the cleanest public toilet
   </description>
   <author email="sonnylazuardi@gmail.com" href="http://sonnylab.com/">
     
