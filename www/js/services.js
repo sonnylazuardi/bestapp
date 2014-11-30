@@ -142,6 +142,37 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
   return self;
 })
 
+.factory('Report',function($http,serverUrl, $q){
+  var self = this;
+  self.getByUser = function(user_id){
+    $http.get(serverUrl+'api/user/' + user_id + '/reports' + toilet_id).success(function(data) {
+      if (data.data) {
+        var reports = data.data;
+        def.resolve(reports);
+      }
+    });
+    
+  }
+  self.postReport = function(user_id,toilet_id,comment,cat){
+    var def = $q.defer();
+    var msg = {
+      user_id : 1, //sample
+      subject : "Judul Rata",
+      category : cat,
+      content : comment
+    };
+    $http.post(serverUrl+'api/toilet/'+'toilet_id'+'/report',msg).success(function(data) {
+      if (data.data) {
+        var comments = data.data;
+        def.resolve(comments);
+      }
+    });
+    return def.promise
+  }
+
+  return self;
+})
+
 .factory('Toilet', function($http, serverUrl, $q, $cordovaGeolocation){
   var self = this;
   self.getById = function(toilet_id){

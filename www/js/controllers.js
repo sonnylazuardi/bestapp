@@ -20,6 +20,13 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
     }
 })
 
+.controller('ListReportCtrl', function($scope, Report) {
+  var id = 1;
+  Report.getByUser(id).then(function(data){
+    $scope.reports = data;
+  });
+})
+
 .controller('HomeCtrl', function($scope, $rootScope, simpleLogin, $location) {
   if (!$rootScope.auth)
     $rootScope.loginShow = true;
@@ -37,8 +44,19 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   }
 })
 
-.controller('ReportCtrl', function($scope,$stateParams, Toilet){
+.controller('ReportCtrl', function($scope,$stateParams, Toilet, Report,$location){
   var id = $stateParams.id;
+  var usid = 1;
+  $scope.form = {
+    category:"Fasilitas",
+    comment:""
+  };
+  $scope.report = function(){
+    Report.postReport(usid,1,$scope.form.comment,$scope.form.category).then(function(data){
+      console.log(data);
+      $location.path('nearest');
+    });
+  }
 })
 
 .controller('SearchCtrl', function($scope, $rootScope, $location, Toilet, Geolocation) {
