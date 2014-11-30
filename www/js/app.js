@@ -15,14 +15,14 @@ angular.module('inklusik', [
   'highcharts-ng'
 ])
 
-.run(function(simpleLogin, $ionicPlatform, $state) {
+.run(function(simpleLogin, $ionicPlatform, $state, $rootScope) {
   simpleLogin.getUser();
   $ionicPlatform.ready(function() {
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
     $ionicPlatform.registerBackButtonAction(function () {
-      if($state.current.name=="login"){
+      if($rootScope.loginShow){
         navigator.app.exitApp();
       }
       else {
