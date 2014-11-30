@@ -92,31 +92,24 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
 
 })
 
-.controller('ToiletCtrl', function($scope, $cordovaGeolocation, $location, $stateParams, Toilet, Comment) {
+.controller('ToiletCtrl', function($scope, $cordovaGeolocation, $location, $stateParams, Toilet, Comment, Geolocation) {
     var id = $stateParams.id;
     Toilet.getById(id).then(function(data){
       $scope.toilet = data;
-      $scope.male = data.male;
-      $scope.female = data.female;
-      $scope.disable = data.disable;
+      $scope.status.male = data.male;
+      $scope.status.female = data.female;
+      $scope.status.disabled = data.disabled;
+      $scope.marker.coords.latitude = data.latitude;
+      $scope.marker.coords.longitude = data.longitude;
+      $scope.map.center.latitude = data.latitude;
+      $scope.map.center.longitude = data.longitude;
     });
     Comment.getByToiletId(id).then(function(data){
-      console.log("comment");
-      console.log(data);
       $scope.comments = data
     });
-    $cordovaGeolocation
-    .getCurrentPosition()
-    .then(function (position) {
-      var lat  = position.coords.latitude;
-      var long = position.coords.longitude;
-      $scope.map = {center: {latitude: lat, longitude: long }, zoom: 14 };
-      $scope.marker.coords.latitude = lat;
-      $scope.marker.coords.longitude = long;
-    }, function(err) {
-      // error
-      alert('Error fetching position');
-    });
+
+    Geolocation.init($scope);
+   
 
   $scope.options = {scrollwheel: false};
   $scope.marker = {
@@ -125,6 +118,7 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
       latitude: 40.1451,
       longitude: -99.6680
     },
+    icon: 'http://sonnylazuardi.github.io/bestapp/www/img/marker.png',
     options: { draggable: true },
     events: {
       dragend: function (marker, eventName, args) {
@@ -137,8 +131,9 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
     }
   }
 
-  $scope.statistic = function() {
-    $location.path('/toilet/statistic');
+  $scope.statistic = function(id) {
+    console.log(id);
+    $location.path('/toilet/statistic/'+id);
   }
   $scope.report = function() {
     $location.path('/report/' + id);
@@ -146,7 +141,7 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   $scope.status = {
     male : false,
     female : false,
-    disable : false, 
+    disabled : false, 
     doMale: function() {
       $scope.status.male = !$scope.status.male;
     },
@@ -154,7 +149,7 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
       $scope.status.female = !$scope.status.female;
     },
     doDisable: function() {
-      $scope.status.disable = !$scope.status.disable;
+      $scope.status.disabled = !$scope.status.disabled;
     },
     doLike: function() {
       $scope.toilet.like++;
@@ -188,7 +183,7 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   }
 })
 
-.controller('ToiletAddCtrl', function($scope, Geolocation, $cordovaCamera) {
+.controller('ToiletAddCtrl', function($scope, Geolocation, $cordovaCamera, $location) {
   Geolocation.init($scope);
   $scope.toilet = {
     name : 'Toilet Name',
@@ -199,7 +194,7 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
   $scope.status = {
     male : false,
     female : false,
-    disable : false, 
+    disabled : false, 
     doMale: function() {
       $scope.status.male = !$scope.status.male;
     },
@@ -207,7 +202,7 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
       $scope.status.female = !$scope.status.female;
     },
     doDisable: function() {
-      $scope.status.disable = !$scope.status.disable;
+      $scope.status.disabled = !$scope.status.disabled;
     },
     doLike: function() {
       $scope.toilet.like++;
@@ -233,11 +228,22 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
       }, function(err) {
         alert('error taking picture')
       });
+    },
+    doSave: function() {
+      $location.path('/nearest');
     }
   };
 })
 
-.controller('ToiletStatisticCtrl', function($scope) {
+.controller('ToiletStatisticCtrl', function($scope, Toilet, $stateParams) {
+  $scope.toilet = {};
+  var id = $stateParams.id;
+  Toilet.getById(id).then(function(data) {
+    // console.log("toilet");
+    // console.log(data);
+    $scope.toilet = data;
+    $scope.chartConfig.series[0].name = data.name;
+  });
   $scope.chartConfig = {
     title: {
       text: '',
@@ -270,7 +276,7 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
         borderWidth: 0
     },
     series: [{
-      name: 'Toilet Labtek V',
+      name: '',
       data: [7.0,  9.5,  18.2, 21.5, 25.2, 26.5, 23.3]
     }]
   };

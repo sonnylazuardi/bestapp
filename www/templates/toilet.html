@@ -1,11 +1,11 @@
 <ion-view title="TOILET">
   <ion-content class="map-content" >
     <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" id="small-map">
-      <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+      <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id" icon="marker.icon">
       </ui-gmap-marker>
     </ui-gmap-google-map>
     <div class="profile-banner">
-      <button class="button absolute-right" ng-click="statistic()">
+      <button class="button absolute-right" ng-click="statistic(toilet.id)">
         <i class="ion-stats-bars"></i> Statistic
       </button>
 
@@ -35,20 +35,20 @@
       <div class="toilet-button row">
         <div class="col">
           <button class="button button-block button-light" ng-click="status.doMale()">
-            <i class="fa fa-icon fa-male fa-lg" ng-show="!status.male"></i>
+            <i class="fa fa-icon fa-male fa-lg" style="color:#d1d1d1" ng-show="!status.male"></i>
             <i class="fa fa-icon fa-male fa-lg" style="color:#2980b9" ng-show="status.male"></i>
           </button>
         </div>
         <div class="col">
           <button class="button button-block button-light" ng-click="status.doFemale()">
-            <i class="fa fa-icon fa-female fa-lg" ng-show="!status.female"></i>
+            <i class="fa fa-icon fa-female fa-lg" style="color:#d1d1d1" ng-show="!status.female"></i>
             <i class="fa fa-icon fa-female fa-lg" style="color:#2980b9" ng-show="status.female"></i>
           </button>
         </div>
         <div class="col">
           <button class="button button-block button-light" ng-click="status.doDisable()">
-            <i class="fa fa-icon fa-wheelchair fa-lg" ng-show="!status.disable"></i>
-            <i class="fa fa-icon fa-wheelchair fa-lg" style="color:#2980b9" ng-show="status.disable"></i>
+            <i class="fa fa-icon fa-wheelchair fa-lg" style="color:#d1d1d1" ng-show="!status.disabled"></i>
+            <i class="fa fa-icon fa-wheelchair fa-lg" style="color:#2980b9" ng-show="status.disabled"></i>
           </button>
         </div>
       </div>

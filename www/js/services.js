@@ -14,34 +14,37 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
   return self;
 })
 
-.factory('Geolocation', function($cordovaGeolocation, Toilet) {
+.factory('Geolocation', function($cordovaGeolocation, Toilet, $timeout, $q) {
   var self = this;
   self.init = function($scope) {
     
-    $cordovaGeolocation
-      .getCurrentPosition()
-      .then(function (position) {
-        var lat  = position.coords.latitude;
-        var long = position.coords.longitude;
+    // $cordovaGeolocation
+    //   .getCurrentPosition()
+    //   .then(function (position) {
+      $timeout(function() {
+        var lat  = '-6.8861469';
+        var long = '107.6083757';
+
         $scope.marker.coords.latitude = lat;
         $scope.marker.coords.longitude = long;
-        $scope.map = {center: {latitude: lat, longitude: long }, zoom: 20, bounds: {} };
+        $scope.map = {center: {latitude: lat, longitude: long }, zoom: 18, bounds: {} };
 
-        $scope.$watch(function() {
-          return $scope.map.bounds;
-        }, function(nv, ov) {
-          if (!ov.southwest && nv.southwest) {
-            var markers = [];
-            for (var i = 0; i < 5; i++) {
-              markers.push(createRandomMarker(i+1, $scope.map.bounds))
-            }
-            $scope.randomMarkers = markers;
-          }
-        }, true);
-      }, function(err) {
-        // error
-        alert('Error fetching position');
-      });
+        // $scope.$watch(function() {
+        //   return $scope.map.bounds;
+        // }, function(nv, ov) {
+        //   if (!ov.southwest && nv.southwest) {
+        //     var markers = [];
+        //     for (var i = 0; i < 5; i++) {
+        //       markers.push(createRandomMarker(i+1, $scope.map.bounds))
+        //     }
+        //     $scope.randomMarkers = markers;
+        //   }
+        // }, true);
+      }, 100);
+      // }, function(err) {
+      //   // error
+      //   alert('Error fetching position');
+      // });
     $scope.windowOptions = {
       visible: true
     };
@@ -49,27 +52,28 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
     Toilet.getAll().then(function(data) {
       console.log(data);
       $scope.toilets = data;
+      var markers = [];
+      angular.forEach(data, function(item) {
+        markers.push(createMarker(item.id+1, item));
+      });
+      $scope.randomMarkers = markers;
     })
 
-    var createRandomMarker = function(i, bounds, idKey) {
-      var lat_min = bounds.southwest.latitude,
-        lat_range = bounds.northeast.latitude - lat_min,
-        lng_min = bounds.southwest.longitude,
-        lng_range = bounds.northeast.longitude - lng_min;
+    var createMarker = function(i, item, idKey) {
 
       if (idKey == null) {
         idKey = "id";
       }
 
-      var latitude = lat_min + (Math.random() * lat_range);
-      var longitude = lng_min + (Math.random() * lng_range);
+      var latitude = item.latitude;
+      var longitude = item.longitude;
       var ret = {
         latitude: latitude,
         longitude: longitude,
-        toiletId: $scope.toilets[i].id,
-        title: $scope.toilets[i].name,
+        toiletId: item.id,
+        title: item.name,
         options: { draggable: true },
-        description: $scope.toilets[i].description,
+        description: item.description,
         icon: 'http://sonnylazuardi.github.io/bestapp/www/img/marker.png',
         show: false,
         events: {

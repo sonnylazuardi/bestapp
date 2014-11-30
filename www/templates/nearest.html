@@ -8,7 +8,6 @@
             <ui-gmap-windows show="show">
                 <div ng-non-bindable>
                     <div><strong>{{title}}</strong></div>
-                    <div>{{description}}</div>
                     <div><a href="#/toilet/{{toiletId}}" class="button button-small button-balanced">View Toilet</a></div>
                 </div>
             </ui-gmap-windows>
@@ -42,7 +41,7 @@
             </div>
           </div>
           <div class="distance">
-            250 M
+            {{toilet.distance}} M
           </div>
         </div>  
     </div>

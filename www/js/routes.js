@@ -32,7 +32,7 @@ angular.module('inklusik.routes', ['simpleLogin'])
       controller: 'ToiletAddCtrl'
     },
     'toilet-statistic': {
-      url:'/toilet/statistic',
+      url:'/toilet/statistic/:id',
       templateUrl: "templates/toilet-statistic.html",
       controller: 'ToiletStatisticCtrl'
     },
