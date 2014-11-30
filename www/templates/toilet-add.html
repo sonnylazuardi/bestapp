@@ -34,26 +34,26 @@
       <div class="toilet-button row">
         <div class="col">
           <button class="button button-block button-light" ng-click="status.doMale()">
-            <i class="fa fa-icon fa-male fa-lg" ng-show="!status.male"></i>
+            <i class="fa fa-icon fa-male fa-lg" style="color:#d1d1d1" ng-show="!status.male"></i>
             <i class="fa fa-icon fa-male fa-lg" style="color:#2980b9" ng-show="status.male"></i>
           </button>
         </div>
         <div class="col">
           <button class="button button-block button-light" ng-click="status.doFemale()">
-            <i class="fa fa-icon fa-female fa-lg" ng-show="!status.female"></i>
+            <i class="fa fa-icon fa-female fa-lg" style="color:#d1d1d1" ng-show="!status.female"></i>
             <i class="fa fa-icon fa-female fa-lg" style="color:#2980b9" ng-show="status.female"></i>
           </button>
         </div>
         <div class="col">
           <button class="button button-block button-light" ng-click="status.doDisable()">
-            <i class="fa fa-icon fa-wheelchair fa-lg" ng-show="!status.disable"></i>
-            <i class="fa fa-icon fa-wheelchair fa-lg" style="color:#2980b9" ng-show="status.disable"></i>
+            <i class="fa fa-icon fa-wheelchair fa-lg" style="color:#d1d1d1" ng-show="!status.disabled"></i>
+            <i class="fa fa-icon fa-wheelchair fa-lg" style="color:#2980b9" ng-show="status.disabled"></i>
           </button>
         </div>
       </div>
     </div>
     
-    <button class="button button-block button-stable" type="submit" ng-click="save()"><i class="ion-chatbox-working"></i> Save</button>
+    <button class="button button-block button-stable" type="submit" ng-click="status.doSave()"><i class="ion-chatbox-working"></i> Save</button>
 
 
   </ion-content>
