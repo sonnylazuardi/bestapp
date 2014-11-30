@@ -21,17 +21,17 @@
                 liked
               </div>
               <div class="col date">
-                {{like.date}}
+                {{like.date | cutspace}}
               </div>
             </div>
             <div style="background-color:#E6E7E8;" class="row">
               <div class="col">
-                <div style="background: url('img/toilet/{{like.id}}.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 55px; width: 55px; background-color: #fff; border-radius:5%; margin: 0px auto; ">
+                <div style="background: url('img/toilet/{{like.toilet_id}}.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center center; height: 55px; width: 55px; background-color: #fff; border-radius:5%; margin: 0px auto; ">
                 </div>
               </div>
               <div class="col col-75">
                 <p class="song-title">{{like.toilet_name}}</p>
-                <p class="song-artist">{{like.toilet_desc}}</p>
+                <p class="song-artist">{{like.toilet_desc | cut}}</p>
               </div>
             </div>
           </div>

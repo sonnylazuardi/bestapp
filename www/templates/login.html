@@ -5,12 +5,27 @@
 <div class="login-page">
     <div class="login-wrap">
         <div class="logo"></div>
-        <div class="hint">login with :</div>
-        <button class="button migme button-block button-balanced" type="submit" ng-click="MigmeLogin()"><i class="ion-person"></i> TELKOM ID</button>
-        <button class="button fb button-block button-positive" type="submit" ng-click="FBLogin()"><i class="ion-social-facebook"></i> FACEBOOK</button>
-        <a style="text-decoration: none;" href ng-click="register()"><div class="hint">dont have an account? <strong>register</strong></div></a>
-        <br><br><br><br><br>
-        <a style="text-decoration: none;" href ng-click="guest()"><div class="hint">or continue as <strong>guest</strong></div></a>
+        <div ng-show="form.showform">
+	        <div class="hint">login</div>
+	        <div class="list">
+			  <label class="item item-input">
+			    <input type="text" placeholder="UserID" ng-model="form.username">
+			  </label>
+			  <label class="item item-input">
+			    <input type="password" placeholder="Password" ng-model="form.password">
+			  </label>
+			</div>
+			<button class="button migme button-block button-balanced" type="submit" ng-click="login()"><i class="ion-person"></i> Login</button>
+			<button class="button migme button-block button-light" type="submit" ng-click="back()"><i class="ion-person"></i> Back</button>
+		</div>
+		<div ng-show="!form.showform">
+	        <div class="hint">login with :</div>
+	        <button class="button migme button-block button-balanced" type="submit" ng-click="MigmeLogin()"><i class="ion-person"></i> TELKOM ID</button>
+	        <button class="button fb button-block button-positive" type="submit" ng-click="FBLogin()"><i class="ion-social-facebook"></i> FACEBOOK</button>
+	        <a style="text-decoration: none;" href ng-click="register()"><div class="hint">dont have an account? <strong>register</strong></div></a>
+	        <br><br><br><br><br>
+	        <a style="text-decoration: none;" href ng-click="guest()"><div class="hint">or continue as <strong>guest</strong></div></a>
+        </div>
     </div>
 </div>
 
