@@ -99,6 +99,9 @@ angular.module('inklusik.services', ['ngCordova', 'ngCordova', 'uiGmapgoogle-map
           }
         }
       };
+      if (item.cleanliness < 5) {
+        ret.icon = 'http://sonnylazuardi.github.io/bestapp/www/img/marker-dirt.png';
+      }
       ret.onClick = function() {
         ret.show = !ret.show;
       };
