@@ -846,3 +846,7 @@ select {
 	background-color: #FCFCFC !important;
 
 }
+p.hint {
+    color: #555;
+    padding: 20px;
+}
