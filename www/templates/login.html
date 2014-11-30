@@ -8,15 +8,15 @@
         <div ng-show="form.showform">
 	        <div class="hint">login</div>
 	        <div class="list">
-			  <label class="item item-input">
-			    <input type="text" placeholder="UserID" ng-model="form.username">
+			  <label  class="item item-input">
+			    <input style="color:#fff" type="text" placeholder="UserID" ng-model="form.username">
 			  </label>
-			  <label class="item item-input">
-			    <input type="password" placeholder="Password" ng-model="form.password">
+			  <label   class="item item-input">
+			    <input style="color:#fff" type="password" placeholder="Password" ng-model="form.password">
 			  </label>
 			</div>
 			<button class="button migme button-block button-balanced" type="submit" ng-click="login()"><i class="ion-person"></i> Login</button>
-			<button class="button migme button-block button-light" type="submit" ng-click="back()"><i class="ion-person"></i> Back</button>
+			<button class="button button-block button-light" type="submit" ng-click="back()">Back</button>
 		</div>
 		<div ng-show="!form.showform">
 	        <div class="hint">login with :</div>

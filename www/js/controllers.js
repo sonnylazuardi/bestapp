@@ -7,11 +7,12 @@ angular.module('inklusik.controllers', ['ui.knob', 'ngCordova', 'uiGmapgoogle-ma
       showform:false
     };
     $scope.login = function(){
-
+      $rootScope.loginShow = false;
+      $rootScope.auth = true;
     }
 
     $scope.back = function(){
-      $scope.form.showform = true;
+      $scope.form.showform = false;
     }
 
     $rootScope.loginShow = true;
